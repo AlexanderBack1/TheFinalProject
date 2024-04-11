@@ -88,7 +88,7 @@ const moveSquare2 = {
     startX: 800,
     startY: 0,
 
-    endX: 1000,
+    endX: 200,
     endY: 200
 }
 
@@ -104,7 +104,6 @@ function createSquares() {
 
 
 function collisionSquare() {
-    if (tonne1.x < moveSquare2.endX - 100) {
         if (tonne1.xMovement == true && tonne1.yMovement == false) {
             tonne1.xMovement = false
             tonne1.yMovement = true
@@ -114,8 +113,6 @@ function collisionSquare() {
             tonne1.yMovement = false
         }
     }
-}
-
 
 //hoved funksjonen for hele canvaset
 tegn()
