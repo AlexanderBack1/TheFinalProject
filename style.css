@@ -1,0 +1,16 @@
+main {
+    height: 500px;
+    width: 1000px;
+    background-color: cyan;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+canvas {
+    background-color: grey;
+}
