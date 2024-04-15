@@ -48,14 +48,20 @@ tonne1 = {
     y: 100,
     radius: 50,
     x_velocity: 5,
-    y_velocity: 3,
+    yVelocity: 3,
 
     yMovement: false,
     xMovement: true,
 
     visible: true,
 
-    yLimit: 350
+    yLimit: 400,
+
+    //resetting
+    startX: 100,
+    startY: 100,
+    startYLimit: 400,
+    yStartVelocity: 3,
 }
 
 function tegnTonne(tonne) {
@@ -69,23 +75,28 @@ function tegnTonne(tonne) {
 }
 
 //tønne bevegelse
+function invertMovement() {
+    tonne1.x_velocity = -tonne1.x_velocity
+}
+
 function flytteTonne() {
     if (tonne1.xMovement == true) {
         if (tonne1.x > canvas.width - tonne1.radius || tonne1.x < tonne1.radius) {
-            tonne1.x_velocity = -tonne1.x_velocity
+            invertMovement()
         }
 
         tonne1.x += tonne1.x_velocity
 
     } else if (tonne1.yMovement == true) {
         if (tonne1.y + 100 > tonne1.yLimit) {
-            tonne1.y_velocity = 0
+            tonne1.yVelocity = 0
         }
 
-        tonne1.y += tonne1.y_velocity
+        tonne1.y += tonne1.yVelocity
     }
 }
 
+//moveSquares
 const moveSquare1 = {
     startX: 950,
     startY: 0,
@@ -96,7 +107,7 @@ const moveSquare1 = {
 
 const moveSquare2 = {
     startX: 800,
-    startY: 300,
+    startY: 350,
 
     endX: 200,
     endY: 50
@@ -120,7 +131,7 @@ const moveSquare4 = {
 
 const moveSquare5 = {
     startX: 0,
-    startY: 550,
+    startY: 590,
 
     endX: 200,
     endY: 50
@@ -163,31 +174,115 @@ function collisionSquare() {
             return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
         }
     
+    function resetTonne(tonne) {
+        tonne.x = tonne.startX
+        tonne.y = tonne.startY
+        tonne.yLimit = tonne.startYLimit
+        tonne.yVelocity = tonne.yStartVelocity
+        tonne.visible = true
+    }
     
     function checkCollisions() {
         if (detectCollision(tonne1, moveSquare1) || 
-        detectCollision(tonne1, moveSquare2) || 
-        detectCollision(tonne1, moveSquare3) ) {
+        detectCollision(tonne1, moveSquare2) ||
+        detectCollision(tonne1, moveSquare4) ||
+        detectCollision(tonne1, moveSquare5)) {
             collisionSquare();
         }
         if (detectCollision(tonne1, moveSquare3)) {
             tonne1.visible = false;
+            setTimeout(resetTonne(tonne1), 1000)
         }
 
         if (detectCollision(tonne1, moveSquare4)) {
-            tonne1.yLimit = 600
-            collisionSquare()
+            tonne1.yLimit = 640
+            tonne1.yVelocity = tonne1.yStartVelocity
+        }
+        if(detectCollision(tonne1, moveSquare2)) {
+            invertMovement()
+        }
+        if (detectCollision(tonne1, moveSquare5)) {
+            invertMovement()
         }
     }
+
+
+//spilleren
+const player = {
+    startX: 950,
+    startY: 550,
+
+    endX: 50,
+    endY: 50,
+
+    speed: 7,
+}
+
+function drawPlayer() {
+    ctx.fillStyle = "rgb(200 200 200)"
+    ctx.fillRect(player.startX, player.startY, player.endX, player.endY)
+}
+
+    function movePlayer() {
+        document.addEventListener("keydown", function(event) {
+            let key = event.key;
+            if (key === "a" || key === "A") {
+              moveLeft()
+            }
+            if (key === "d" || key === "D") {
+                moveRight()
+            }
+        });
     
+        
+    }
+    
+    function moveLeft() {
+        player.startX = player.startX - player.speed
+    }
+    
+    function moveRight() {
+        player.startX = player.startX + player.speed
+    }
+    
+    function jump() {
+    
+    }
+
+
+function moveLeft() {
+    player.startX = player.startX - player.speed
+    //dontLeave()
+}
+
+function moveRight() {
+    player.startX = player.startX + player.speed
+    //dontLeave()
+}
+
+function jump() {
+
+}
+
+function dontLeave() {
+    if(player.startX > 950) {
+        player.startX = 950
+    }
+    if (player.startX < 0) {
+        player.startX = 9
+    }
+}
+
 //hoved funksjonen for hele canvaset
 tegn()
+movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den en ny eventlistner per frame
 function tegn() {
     flytteTonne()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     createArena()
     createSquares()
     tegnTonne(tonne1)
+    drawPlayer()
     requestAnimationFrame(tegn)
     checkCollisions()
 }
