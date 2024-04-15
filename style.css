@@ -12,5 +12,6 @@ body {
 
 
 canvas {
-    background-image: ;
+    background-image: url(Bilder/arenaBackground.png);
+    background-size: cover;
 }
