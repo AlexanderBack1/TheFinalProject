@@ -20,7 +20,7 @@ let row2 = {
 let row3 = {
     startY: 450,
     endY: 150
-} 
+}
 
 function drawLevels(rows) {
     ctx.fillStyle = "rgb(200 0 0 / 50%)"
@@ -37,7 +37,7 @@ function createArena() {
 
 
 //fysikkens lover i følge meg
-const gravity = -0.4
+const gravity = -0.65
 
 //tønner
 let yMovement = true
@@ -65,7 +65,7 @@ tonne1 = {
 }
 
 function tegnTonne(tonne) {
-    if(tonne.visible == true) {
+    if (tonne.visible == true) {
         ctx.beginPath()
         ctx.arc(tonne1.x, tonne1.y, tonne1.radius, 0, Math.PI * 2)
         ctx.fillStyle = "rgb(0 0 200 / 50%)"
@@ -152,70 +152,75 @@ function createSquares() {
 
 
 function collisionSquare() {
-        if (tonne1.xMovement == true && tonne1.yMovement == false) {
-            tonne1.xMovement = false
-            tonne1.yMovement = true
-        }
-        else {
-            tonne1.xMovement = true
-            tonne1.yMovement = false
-        }
+    if (tonne1.xMovement == true && tonne1.yMovement == false) {
+        tonne1.xMovement = false
+        tonne1.yMovement = true
     }
-    
-        function detectCollision(tonne, square) {
-            let squareCenterX = square.startX + square.endX / 2;
-            let squareCenterY = square.startY + square.endY / 2;
-        
-            let distX = Math.abs(tonne.x - squareCenterX);
-            let distY = Math.abs(tonne.y - squareCenterY);
-        
-            let distance = Math.sqrt(distX * distX + distY * distY);
-        
-            return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
-        }
-    
-    function resetTonne(tonne) {
-        tonne.x = tonne.startX
-        tonne.y = tonne.startY
-        tonne.yLimit = tonne.startYLimit
-        tonne.yVelocity = tonne.yStartVelocity
-        tonne.visible = true
+    else {
+        tonne1.xMovement = true
+        tonne1.yMovement = false
     }
-    
-    function checkCollisions() {
-        if (detectCollision(tonne1, moveSquare1) || 
+}
+
+function detectCollision(tonne, square) {
+    let squareCenterX = square.startX + square.endX / 2;
+    let squareCenterY = square.startY + square.endY / 2;
+
+    let distX = Math.abs(tonne.x - squareCenterX);
+    let distY = Math.abs(tonne.y - squareCenterY);
+
+    let distance = Math.sqrt(distX * distX + distY * distY);
+
+    return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
+}
+
+function resetTonne(tonne) {
+    tonne.x = tonne.startX
+    tonne.y = tonne.startY
+    tonne.yLimit = tonne.startYLimit
+    tonne.yVelocity = tonne.yStartVelocity
+    tonne.visible = true
+}
+
+function checkCollisions() {
+    if (detectCollision(tonne1, moveSquare1) ||
         detectCollision(tonne1, moveSquare2) ||
         detectCollision(tonne1, moveSquare4) ||
         detectCollision(tonne1, moveSquare5)) {
-            collisionSquare();
-        }
-        if (detectCollision(tonne1, moveSquare3)) {
-            tonne1.visible = false;
-            setTimeout(resetTonne(tonne1), 1000)
-        }
-
-        if (detectCollision(tonne1, moveSquare4)) {
-            tonne1.yLimit = 640
-            tonne1.yVelocity = tonne1.yStartVelocity
-        }
-        if(detectCollision(tonne1, moveSquare2)) {
-            invertMovement()
-        }
-        if (detectCollision(tonne1, moveSquare5)) {
-            invertMovement()
-        }
+        collisionSquare();
     }
+    if (detectCollision(tonne1, moveSquare3)) {
+        tonne1.visible = false;
+        setTimeout(resetTonne(tonne1), 1000)
+    }
+
+    if (detectCollision(tonne1, moveSquare4)) {
+        tonne1.yLimit = 640
+        tonne1.yVelocity = tonne1.yStartVelocity
+    }
+    if (detectCollision(tonne1, moveSquare2)) {
+        invertMovement()
+    }
+    if (detectCollision(tonne1, moveSquare5)) {
+        invertMovement()
+    }
+}
 
 
 //spilleren
 const player = {
     startX: 950,
-    startY: 550,
+    startY: 540,
 
     endX: 50,
     endY: 50,
 
     speed: 7,
+
+    yVelocity: 10,
+    yStartVelocity: 10,
+
+    yLimit: 590
 }
 
 function drawPlayer() {
@@ -223,53 +228,66 @@ function drawPlayer() {
     ctx.fillRect(player.startX, player.startY, player.endX, player.endY)
 }
 
-    function movePlayer() {
-        document.addEventListener("keydown", function(event) {
-            let key = event.key;
-            if (key === "a" || key === "A") {
-              moveLeft()
-            }
-            if (key === "d" || key === "D") {
-                moveRight()
-            }
-        });
-    
-        
-    }
-    
-    function moveLeft() {
-        player.startX = player.startX - player.speed
-    }
-    
-    function moveRight() {
-        player.startX = player.startX + player.speed
-    }
-    
-    function jump() {
-    
-    }
+function movePlayer() {
+    document.addEventListener("keydown", function (event) {
+        let key = event.key;
+        if (key === "a" || key === "A") {
+            moveLeft()
+            dontLeave()
+        }
+        if (key === "d" || key === "D") {
+            moveRight()
+            dontLeave()
+        }
 
+        if (key === "w" || key === "W") {
+            jump()
+        }
+    });
+
+}
 
 function moveLeft() {
-    player.startX = player.startX - player.speed
-    //dontLeave()
+    player.startX -= player.speed
 }
 
 function moveRight() {
-    player.startX = player.startX + player.speed
-    //dontLeave()
+    player.startX += player.speed
 }
+
+let hopp = null
+
+let jumping = false;
 
 function jump() {
-
+    if (!jumping) {
+        console.log("ja")
+        jumping = true;
+        player.yVelocity = player.yStartVelocity;
+        requestAnimationFrame(playerJump);
+    }
 }
 
+function playerJump() {
+    player.startY -= player.yVelocity;
+    player.yVelocity += gravity;
+
+    if (player.startY + 50 > player.yLimit) {
+        player.endY = player.yLimit - 10;
+        jumping = false;
+    } else {
+        requestAnimationFrame(playerJump);
+    }
+}
+
+
+
 function dontLeave() {
-    if(player.startX > 950) {
+    if (player.startX > 950) {
         player.startX = 950
     }
     if (player.startX < 0) {
-        player.startX = 9
+        player.startX = 0
     }
 }
 
