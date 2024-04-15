@@ -46,7 +46,7 @@ let xMovement = false
 tonne1 = {
     x: 100,
     y: 100,
-    radius: 30,
+    radius: 50,
     x_velocity: 5,
     yVelocity: 3,
 
@@ -95,6 +95,7 @@ function flytteTonne() {
         tonne1.y += tonne1.yVelocity
     }
 }
+
 
 //moveSquares
 const moveSquare1 = {
@@ -155,10 +156,12 @@ function collisionSquare() {
     if (tonne1.xMovement == true && tonne1.yMovement == false) {
         tonne1.xMovement = false
         tonne1.yMovement = true
+        console.log("beveger seg nedover")
     }
     else {
         tonne1.xMovement = true
         tonne1.yMovement = false
+        console.log("beveger seg til")
     }
 }
 
@@ -171,8 +174,10 @@ function detectCollision(tonne, square) {
 
     let distance = Math.sqrt(distX * distX + distY * distY);
 
-    return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
+    return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2); 
 }
+
+
 
 function resetTonne(tonne) {
     tonne.x = tonne.startX
@@ -188,6 +193,7 @@ function checkCollisions() {
         detectCollision(tonne1, moveSquare4) ||
         detectCollision(tonne1, moveSquare5)) {
         collisionSquare();
+        console.log("ja")
     }
     if (detectCollision(tonne1, moveSquare3)) {
         tonne1.visible = false;
