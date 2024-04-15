@@ -193,7 +193,7 @@ function checkCollisions() {
         detectCollision(tonne1, moveSquare4) ||
         detectCollision(tonne1, moveSquare5)) {
         collisionSquare();
-        console.log("ja")
+
     }
     if (detectCollision(tonne1, moveSquare3)) {
         tonne1.visible = false;
