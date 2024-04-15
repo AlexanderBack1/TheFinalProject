@@ -1,7 +1,7 @@
 //regler for canvaset
 const canvas = document.querySelector("canvas")
 canvas.width = 1000
-canvas.height = 500
+canvas.height = 600
 
 const ctx = canvas.getContext("2d")
 
@@ -9,13 +9,18 @@ const ctx = canvas.getContext("2d")
 //banen
 let row1 = {
     startY: 0,
-    endY: 200
+    endY: 150
 }
 
 let row2 = {
-    startY: 300,
-    endY: 500
+    startY: 200,
+    endY: 150
 }
+
+let row3 = {
+    startY: 450,
+    endY: 150
+} 
 
 function drawLevels(rows) {
     ctx.fillStyle = "rgb(200 0 0 / 50%)"
@@ -27,6 +32,7 @@ createArena()
 function createArena() {
     drawLevels(row1)
     drawLevels(row2)
+    drawLevels(row3)
 }
 
 
@@ -45,17 +51,21 @@ tonne1 = {
     y_velocity: 3,
 
     yMovement: false,
-    xMovement: true
+    xMovement: true,
+
+    visible: true,
+
+    yLimit: 350
 }
 
-tegnTonne()
-
-function tegnTonne() {
-    ctx.beginPath()
-    ctx.arc(tonne1.x, tonne1.y, tonne1.radius, 0, Math.PI * 2)
-    ctx.fillStyle = "rgb(0 0 200 / 50%)"
-    ctx.fill()
-    ctx.closePath()
+function tegnTonne(tonne) {
+    if(tonne.visible == true) {
+        ctx.beginPath()
+        ctx.arc(tonne1.x, tonne1.y, tonne1.radius, 0, Math.PI * 2)
+        ctx.fillStyle = "rgb(0 0 200 / 50%)"
+        ctx.fill()
+        ctx.closePath()
+    }
 }
 
 //tønne bevegelse
@@ -68,7 +78,7 @@ function flytteTonne() {
         tonne1.x += tonne1.x_velocity
 
     } else if (tonne1.yMovement == true) {
-        if (tonne1.y + 70 > canvas.height) {
+        if (tonne1.y + 100 > tonne1.yLimit) {
             tonne1.y_velocity = 0
         }
 
@@ -77,19 +87,43 @@ function flytteTonne() {
 }
 
 const moveSquare1 = {
-    startX: 0,
+    startX: 950,
     startY: 0,
 
-    endX: 200,
-    endY: 200
+    endX: 50,
+    endY: 150
 }
 
 const moveSquare2 = {
     startX: 800,
-    startY: 0,
+    startY: 300,
 
     endX: 200,
-    endY: 200
+    endY: 50
+}
+
+const moveSquare3 = {
+    startX: 950,
+    startY: 450,
+
+    endX: 50,
+    endY: 150
+}
+
+const moveSquare4 = {
+    startX: 0,
+    startY: 200,
+
+    endX: 50,
+    endY: 150
+}
+
+const moveSquare5 = {
+    startX: 0,
+    startY: 550,
+
+    endX: 200,
+    endY: 50
 }
 
 function drawMoveSquares(squares) {
@@ -100,6 +134,9 @@ function drawMoveSquares(squares) {
 function createSquares() {
     drawMoveSquares(moveSquare1)
     drawMoveSquares(moveSquare2)
+    drawMoveSquares(moveSquare3)
+    drawMoveSquares(moveSquare4)
+    drawMoveSquares(moveSquare5)
 }
 
 
@@ -113,7 +150,36 @@ function collisionSquare() {
             tonne1.yMovement = false
         }
     }
+    
+        function detectCollision(tonne, square) {
+            let squareCenterX = square.startX + square.endX / 2;
+            let squareCenterY = square.startY + square.endY / 2;
+        
+            let distX = Math.abs(tonne.x - squareCenterX);
+            let distY = Math.abs(tonne.y - squareCenterY);
+        
+            let distance = Math.sqrt(distX * distX + distY * distY);
+        
+            return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
+        }
+    
+    
+    function checkCollisions() {
+        if (detectCollision(tonne1, moveSquare1) || 
+        detectCollision(tonne1, moveSquare2) || 
+        detectCollision(tonne1, moveSquare3) ) {
+            collisionSquare();
+        }
+        if (detectCollision(tonne1, moveSquare3)) {
+            tonne1.visible = false;
+        }
 
+        if (detectCollision(tonne1, moveSquare4)) {
+            tonne1.yLimit = 600
+            collisionSquare()
+        }
+    }
+    
 //hoved funksjonen for hele canvaset
 tegn()
 function tegn() {
@@ -121,6 +187,7 @@ function tegn() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     createArena()
     createSquares()
-    tegnTonne()
+    tegnTonne(tonne1)
     requestAnimationFrame(tegn)
+    checkCollisions()
 }
