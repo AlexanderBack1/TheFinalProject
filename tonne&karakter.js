@@ -46,7 +46,7 @@ let xMovement = false
 tonne1 = {
     x: 100,
     y: 100,
-    radius: 50,
+    radius: 30,
     x_velocity: 5,
     yVelocity: 3,
 
@@ -273,7 +273,7 @@ function playerJump() {
     player.yVelocity += gravity;
 
     if (player.startY + 50 > player.yLimit) {
-        player.endY = player.yLimit - 10;
+        player.startY = player.yLimit - 50;
         jumping = false;
     } else {
         requestAnimationFrame(playerJump);
