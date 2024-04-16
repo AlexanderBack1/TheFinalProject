@@ -1,6 +1,6 @@
 //regler for canvaset
 const canvas = document.querySelector("canvas")
-canvas.width = 1000
+canvas.width = 900
 canvas.height = 600
 
 const ctx = canvas.getContext("2d")
@@ -99,7 +99,7 @@ function flytteTonne() {
 
 //moveSquares
 const moveSquare1 = {
-    startX: 950,
+    startX: 850,
     startY: 0,
 
     endX: 50,
@@ -107,7 +107,7 @@ const moveSquare1 = {
 }
 
 const moveSquare2 = {
-    startX: 800,
+    startX: 700,
     startY: 350,
 
     endX: 200,
@@ -115,7 +115,7 @@ const moveSquare2 = {
 }
 
 const moveSquare3 = {
-    startX: 950,
+    startX: 850,
     startY: 450,
 
     endX: 50,
@@ -213,7 +213,7 @@ function checkCollisions() {
 
 //spilleren
 const player = {
-    startX: 950,
+    startX: 850,
     startY: 540,
 
     endX: 50,
