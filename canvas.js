@@ -45,8 +45,8 @@ let xMovement = false
 
 tonne1 = {
     x: 100,
-    y: 100,
-    radius: 50,
+    y: 120,
+    radius: 30,
     x_velocity: 5,
     yVelocity: 3,
 
@@ -57,9 +57,11 @@ tonne1 = {
 
     yLimit: 400,
 
+    size: 60,
+
     //resetting
     startX: 100,
-    startY: 100,
+    startY: 120,
     startYLimit: 400,
     yStartVelocity: 3,
 }
@@ -88,7 +90,7 @@ function flytteTonne() {
         tonne1.x += tonne1.x_velocity
 
     } else if (tonne1.yMovement == true) {
-        if (tonne1.y + 100 > tonne1.yLimit) {
+        if (tonne1.y + tonne1.size > tonne1.yLimit) {
             tonne1.yVelocity = 0
         }
 
@@ -99,7 +101,7 @@ function flytteTonne() {
 
 //moveSquares
 const moveSquare1 = {
-    startX: 850,
+    startX: 800,
     startY: 0,
 
     endX: 50,
@@ -107,11 +109,11 @@ const moveSquare1 = {
 }
 
 const moveSquare2 = {
-    startX: 700,
-    startY: 350,
+    startX: 800,
+    startY: 340,
 
-    endX: 200,
-    endY: 50
+    endX: 30,
+    endY: 10
 }
 
 const moveSquare3 = {
@@ -123,7 +125,7 @@ const moveSquare3 = {
 }
 
 const moveSquare4 = {
-    startX: 0,
+    startX: 50,
     startY: 200,
 
     endX: 50,
@@ -131,11 +133,11 @@ const moveSquare4 = {
 }
 
 const moveSquare5 = {
-    startX: 0,
+    startX: 85,
     startY: 590,
 
-    endX: 200,
-    endY: 50
+    endX: 30,
+    endY: 10
 }
 
 function drawMoveSquares(squares) {
@@ -199,15 +201,13 @@ function checkCollisions() {
     }
 
     if (detectCollision(tonne1, moveSquare4)) {
-        tonne1.yLimit = 640
+        tonne1.yLimit = 625
         tonne1.yVelocity = tonne1.yStartVelocity
     }
-    if (detectCollision(tonne1, moveSquare2)) {
+    if (detectCollision(tonne1, moveSquare2) || detectCollision(tonne1, moveSquare5)) {
         invertMovement()
     }
-    if (detectCollision(tonne1, moveSquare5)) {
-        invertMovement()
-    }
+   
 }
 
 
