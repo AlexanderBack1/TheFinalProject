@@ -156,12 +156,10 @@ function collisionSquare() {
     if (tonne1.xMovement == true && tonne1.yMovement == false) {
         tonne1.xMovement = false
         tonne1.yMovement = true
-        console.log("beveger seg nedover")
     }
     else {
         tonne1.xMovement = true
         tonne1.yMovement = false
-        console.log("beveger seg til")
     }
 }
 
@@ -267,7 +265,6 @@ let jumping = false;
 
 function jump() {
     if (!jumping) {
-        console.log("ja")
         jumping = true;
         player.yVelocity = player.yStartVelocity;
         requestAnimationFrame(playerJump);
@@ -296,6 +293,7 @@ function dontLeave() {
         player.startX = 0
     }
 }
+
 
 //hoved funksjonen for hele canvaset
 tegn()
