@@ -27,12 +27,36 @@ function drawLevels(rows) {
     ctx.fillRect(0, rows.startY, 1000, rows.endY)
 }
 
-createArena()
+stige1 = {
+    startX: 60,
+    startY: 300, 
+
+    endX: 80,
+    endY: 300,
+}
+
+stige2 = {
+    startX: 760,
+    startY: 100, 
+
+    endX: 80,
+    endY: 250,
+}
+
+
+function skapStiger(stige) {
+    ctx.fillStyle = "rgb(0 200 200 / 50%)"
+    ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
+}
+
 
 function createArena() {
     drawLevels(row1)
     drawLevels(row2)
     drawLevels(row3)
+
+    skapStiger(stige1)
+    skapStiger(stige2)
 }
 
 
@@ -141,7 +165,7 @@ const moveSquare5 = {
 }
 
 function drawMoveSquares(squares) {
-    ctx.fillStyle = "rgb(0 200 0 / 50%)"
+    ctx.fillStyle = "rgb(0 200 0 / 100%)"
     ctx.fillRect(squares.startX, squares.startY, squares.endX, squares.endY)
 }
 
@@ -295,6 +319,7 @@ function dontLeave() {
 }
 
 
+
 //hoved funksjonen for hele canvaset
 tegn()
 movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den en ny eventlistner per frame
@@ -308,3 +333,11 @@ function tegn() {
     requestAnimationFrame(tegn)
     checkCollisions()
 }
+
+//to do
+//highscore (online)
+//stiger
+//skins
+//intro
+//flere baller
+//en siste fight animasjon
