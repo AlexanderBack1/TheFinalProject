@@ -116,3 +116,10 @@ function updatePlayer() {
 
 
 
+
+
+if (!climbing) {
+        
+    climbing = true
+    console.log("climbing")
+}

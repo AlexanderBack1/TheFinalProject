@@ -27,39 +27,6 @@ function drawLevels(rows) {
     ctx.fillRect(0, rows.startY, 1000, rows.endY)
 }
 
-stige1 = {
-    startX: 60,
-    startY: 300, 
-
-    endX: 80,
-    endY: 300,
-}
-
-stige2 = {
-    startX: 760,
-    startY: 100, 
-
-    endX: 80,
-    endY: 250,
-}
-
-
-function skapStiger(stige) {
-    ctx.fillStyle = "rgb(0 200 200 / 50%)"
-    ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
-}
-
-
-function createArena() {
-    drawLevels(row1)
-    drawLevels(row2)
-    drawLevels(row3)
-
-    skapStiger(stige1)
-    skapStiger(stige2)
-}
-
-
 //fysikkens lover i følge meg
 const gravity = -0.65
 
@@ -211,29 +178,6 @@ function resetTonne(tonne) {
     tonne.visible = true
 }
 
-function checkCollisions() {
-    if (detectCollision(tonne1, moveSquare1) ||
-        detectCollision(tonne1, moveSquare2) ||
-        detectCollision(tonne1, moveSquare4) ||
-        detectCollision(tonne1, moveSquare5)) {
-        collisionSquare();
-
-    }
-    if (detectCollision(tonne1, moveSquare3)) {
-        tonne1.visible = false;
-        setTimeout(resetTonne(tonne1), 1000)
-    }
-
-    if (detectCollision(tonne1, moveSquare4)) {
-        tonne1.yLimit = 625
-        tonne1.yVelocity = tonne1.yStartVelocity
-    }
-    if (detectCollision(tonne1, moveSquare2) || detectCollision(tonne1, moveSquare5)) {
-        invertMovement()
-    }
-   
-}
-
 
 //spilleren
 const player = {
@@ -317,6 +261,80 @@ function dontLeave() {
         player.startX = 0
     }
 }
+
+//stiger
+
+stige1 = {
+    startX: 60,
+    startY: 300, 
+
+    endX: 80,
+    endY: 300,
+}
+
+stige2 = {
+    startX: 760,
+    startY: 100, 
+
+    endX: 80,
+    endY: 250,
+}
+
+
+function skapStiger(stige) {
+    ctx.fillStyle = "rgb(0 200 200 / 50%)"
+    ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
+}
+
+let climbing = false
+function collisionLadder(stige) {
+    let stigeSenterX = stige.startX + stige.endX / 2;
+
+}
+
+
+
+//funksjon som skjekker alle kollisjoner mulig
+function checkCollisions() {
+    //kollisjoner mellom tønner og moveSquares
+    if (detectCollision(tonne1, moveSquare1) ||
+        detectCollision(tonne1, moveSquare2) ||
+        detectCollision(tonne1, moveSquare4) ||
+        detectCollision(tonne1, moveSquare5)) {
+        collisionSquare();
+
+    }
+    if (detectCollision(tonne1, moveSquare3)) {
+        tonne1.visible = false;
+        setTimeout(resetTonne(tonne1), 1000)
+    }
+
+    if (detectCollision(tonne1, moveSquare4)) {
+        tonne1.yLimit = 625
+        tonne1.yVelocity = tonne1.yStartVelocity
+    }
+    if (detectCollision(tonne1, moveSquare2) || detectCollision(tonne1, moveSquare5)) {
+        invertMovement()
+    }
+
+
+    collisionLadder(stige1)
+}
+
+
+
+
+function createArena() {
+    drawLevels(row1)
+    drawLevels(row2)
+    drawLevels(row3)
+
+    skapStiger(stige1)
+    skapStiger(stige2)
+}
+
+
+//spilleren interakterer med stiger
 
 
 
