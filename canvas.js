@@ -67,6 +67,10 @@ function tegnTonne(tonne) {
     }
 }
 
+function drawBarrels() {
+    tegnTonne(tonne1)
+}
+
 //tønne bevegelse
 function invertMovement() {
     tonne1.x_velocity = -tonne1.x_velocity
@@ -320,9 +324,30 @@ stige2Top = {
     endY: 50,
 }
 
+cosmetiskStige1 = {
+    startX: 60,
+    startY: 300,
+
+    endX: 80,
+    endY: 250,
+}
+
+cosmetiskStige2 = {
+    startX: 760,
+    startY: 100,
+
+    endX: 80,
+    endY: 250,
+}
+
 
 function skapStiger(stige) {
     ctx.fillStyle = "rgb(0 200 200 / 50%)"
+    ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
+}
+
+function skapCStiger(stige) {
+    ctx.fillStyle = "rgb(200 0 200 / 30%)"
     ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
 }
 
@@ -428,6 +453,9 @@ function createArena() {
     drawLevels(row2)
     drawLevels(row3)
 
+    skapCStiger(cosmetiskStige1)
+    skapCStiger(cosmetiskStige2)
+
     skapStiger(stige1Bunn)
     skapStiger(stige2Bunn)
     skapStiger(stige1Top)
@@ -447,7 +475,7 @@ function tegn() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     createArena()
     createSquares()
-    tegnTonne(tonne1)
+    drawBarrels()
     drawPlayer()
     requestAnimationFrame(tegn)
     checkCollisions()
