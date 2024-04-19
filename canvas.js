@@ -219,7 +219,7 @@ function movePlayer() {
         }
 
         if (key === "w" || key === "W") {
-            if(climbing == false) {
+            if (climbing == false) {
                 jump()
             }
             else {
@@ -228,7 +228,7 @@ function movePlayer() {
         }
 
         if (key === "s" || key === "S") {
-            if(climbing == true) {
+            if (climbing == true) {
                 climbDown()
             }
         }
@@ -306,7 +306,15 @@ stige2Bunn = {
 
 stige1Top = {
     startX: 60,
-    startY: 550,
+    startY: 300,
+
+    endX: 80,
+    endY: 50,
+}
+
+stige2Top = {
+    startX: 760,
+    startY: 100,
 
     endX: 80,
     endY: 50,
@@ -326,37 +334,42 @@ function detectPlayerLadderCollision(ladder) {
 }
 
 
-function collisionStige() {
+function collisionStigeBunn() {
     climbPopup()
+    document.addEventListener("keydown", klatreMovement)
+}
+
+function collisionStigeTop() {
+
 }
 
 let popup = document.getElementById("popup")
 function climbPopup() {
     popup.style.opacity = "70%"
-
-    document.addEventListener("keydown", klatreMovement)
 }
 
 function klatreMovement(event) {
     let key = event.key;
 
-        if (key === "e" || key === "E") {
-            klatring()
-        }
+    if (key === "e" || key === "E") {
+        klatring()
+    }
 
-        if (key === "f" || key === "F") {
-            stopKlatring()
-        }
+    if (key === "f" || key === "F") {
+        stopKlatring()
+    }
 }
+popupTxt = document.getElementById("popupTxt")
 
 function klatring() {
     climbing = true
-    popup.innerText = "Trykk på F for å stoppe å klatre"
+    popupTxt.innerText = "Trykk på F for å stoppe å klatre"
 }
 
 function stopKlatring() {
     climbing = false
-    popup.innerText = "Trykk på E for å klatre"
+    popup.style.opacity = "0%"
+    popupTxt.innerText = "Trykk på E for å klatre"
 
     document.removeEventListener("keydown", klatreMovement)
 }
@@ -370,6 +383,8 @@ function climbUp() {
     player.startY -= player.speed
     playerCenterY = player.startY + player.endY / 2
 }
+
+
 
 //funksjon som skjekker alle kollisjoner mulig
 function checkCollisions() {
@@ -396,8 +411,12 @@ function checkCollisions() {
 
 
     if (detectPlayerLadderCollision(stige1Bunn) || detectPlayerLadderCollision(stige2Bunn)) {
-        collisionStige();
+        collisionStigeBunn();
     }
+/*
+    if(detectPlayerLadderCollision(stige1Top) || detectPlayerLadderCollision(stige2Top)) {
+        collisionStigeTop();
+    }*/
 }
 
 
@@ -411,6 +430,8 @@ function createArena() {
 
     skapStiger(stige1Bunn)
     skapStiger(stige2Bunn)
+    skapStiger(stige1Top)
+    skapStiger(stige2Top)
 }
 
 
@@ -435,6 +456,7 @@ function tegn() {
 //to do
 //highscore (online)
 //stiger
+//spiller-ball kollisjon
 //skins
 //intro
 //flere baller
