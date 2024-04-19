@@ -132,7 +132,7 @@ const moveSquare5 = {
 }
 
 function drawMoveSquares(squares) {
-    ctx.fillStyle = "rgb(0 200 0 / 100%)"
+    ctx.fillStyle = "rgb(0 200 0 / 0%)"
     ctx.fillRect(squares.startX, squares.startY, squares.endX, squares.endY)
 }
 
@@ -299,6 +299,14 @@ stige1Bunn = {
 stige2Bunn = {
     startX: 760,
     startY: 300,
+
+    endX: 80,
+    endY: 50,
+}
+
+stige1Top = {
+    startX: 60,
+    startY: 550,
 
     endX: 80,
     endY: 50,
