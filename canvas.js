@@ -165,7 +165,7 @@ function detectCollision(tonne, square) {
 
     let distance = Math.sqrt(distX * distX + distY * distY);
 
-    return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2); 
+    return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
 }
 
 
@@ -204,27 +204,51 @@ function movePlayer() {
     document.addEventListener("keydown", function (event) {
         let key = event.key;
         if (key === "a" || key === "A") {
-            moveLeft()
-            dontLeave()
+            if (climbing == false) {
+                moveLeft()
+                dontLeave()
+            }
+
         }
         if (key === "d" || key === "D") {
-            moveRight()
-            dontLeave()
+            if (climbing == false) {
+                moveRight()
+                dontLeave()
+            }
+
         }
 
         if (key === "w" || key === "W") {
-            jump()
+            if(climbing == false) {
+                jump()
+            }
+            else {
+                climbUp()
+            }
+        }
+
+        if (key === "s" || key === "S") {
+            if(climbing == true) {
+                climbDown()
+            }
         }
     });
 
 }
 
+let playerCenterX = player.startX + player.endX / 2
+let playerCenterY = player.startY + player.endY / 2
+
+let climbing = false
+
 function moveLeft() {
     player.startX -= player.speed
+    playerCenterX = player.startX + player.endX / 2
 }
 
 function moveRight() {
     player.startX += player.speed
+    playerCenterY = playerCenterY = player.startY + player.endY / 2
 }
 
 let hopp = null
@@ -264,20 +288,20 @@ function dontLeave() {
 
 //stiger
 
-stige1 = {
+stige1Bunn = {
     startX: 60,
-    startY: 300, 
+    startY: 550,
 
     endX: 80,
-    endY: 300,
+    endY: 50,
 }
 
-stige2 = {
+stige2Bunn = {
     startX: 760,
-    startY: 100, 
+    startY: 300,
 
     endX: 80,
-    endY: 250,
+    endY: 50,
 }
 
 
@@ -286,13 +310,58 @@ function skapStiger(stige) {
     ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
 }
 
-let climbing = false
-function collisionLadder(stige) {
-    let stigeSenterX = stige.startX + stige.endX / 2;
-
+function detectPlayerLadderCollision(ladder) {
+    return player.startX < ladder.startX + ladder.endX &&
+        player.startX + player.endX > ladder.startX &&
+        player.startY < ladder.startY + ladder.endY &&
+        player.startY + player.endY > ladder.startY;
 }
 
 
+function collisionStige() {
+    climbPopup()
+}
+
+let popup = document.getElementById("popup")
+function climbPopup() {
+    popup.style.opacity = "70%"
+
+    document.addEventListener("keydown", klatreMovement)
+}
+
+function klatreMovement(event) {
+    let key = event.key;
+
+        if (key === "e" || key === "E") {
+            klatring()
+        }
+
+        if (key === "f" || key === "F") {
+            stopKlatring()
+        }
+}
+
+function klatring() {
+    climbing = true
+    popup.innerText = "Trykk på F for å stoppe å klatre"
+}
+
+function stopKlatring() {
+    climbing = false
+    popup.innerText = "Trykk på E for å klatre"
+
+    document.removeEventListener("keydown", klatreMovement)
+}
+
+function climbDown() {
+    player.startY += player.speed
+    playerCenterY = player.startY + player.endY / 2
+}
+
+function climbUp() {
+    player.startY -= player.speed
+    playerCenterY = player.startY + player.endY / 2
+}
 
 //funksjon som skjekker alle kollisjoner mulig
 function checkCollisions() {
@@ -318,8 +387,11 @@ function checkCollisions() {
     }
 
 
-    collisionLadder(stige1)
+    if (detectPlayerLadderCollision(stige1Bunn) || detectPlayerLadderCollision(stige2Bunn)) {
+        collisionStige();
+    }
 }
+
 
 
 
@@ -329,8 +401,8 @@ function createArena() {
     drawLevels(row2)
     drawLevels(row3)
 
-    skapStiger(stige1)
-    skapStiger(stige2)
+    skapStiger(stige1Bunn)
+    skapStiger(stige2Bunn)
 }
 
 

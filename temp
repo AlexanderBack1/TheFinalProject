@@ -123,3 +123,16 @@ if (!climbing) {
     climbing = true
     console.log("climbing")
 }
+
+
+function detectCollisionLadder(stige) {
+    let ladderCenterX = stige.startX + stige.endX / 2;
+    let ladderCenterY = stige.startY + stige.endY / 2
+
+    let distX = Math.abs(playerCenterX - ladderCenterX);
+    let distY = Math.abs(playerCenterY - ladderCenterY);
+
+    let distance = Math.sqrt(distX * distX + distY * distY);
+
+    return distance <= (playerCenterX + Math.min(stige.endX, stige.endY) / 2); 
+}

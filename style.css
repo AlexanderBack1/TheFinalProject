@@ -17,3 +17,13 @@ canvas {
 
     background-color: grey;
 }
+
+#popup {
+    background-color: black;
+    color: white;
+    opacity: 0%;
+
+    position: absolute;
+    top: 0;
+
+}
