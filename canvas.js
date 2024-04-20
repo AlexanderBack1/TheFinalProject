@@ -300,25 +300,18 @@ function dontLeave() {
 
 stige1 = {
     startX: 60,
-    startY: 300,
+    startY: 330,
 
     endX: 80,
-    endY: 300,
-}
-
-stige1Top = {
-}
-
-stige1Bunn = {
-
+    endY: 270,
 }
 
 stige2 = {
     startX: 760,
-    startY: 100,
+    startY: 130,
 
     endX: 80,
-    endY: 250,
+    endY: 220,
 }
 
 function skapStiger(stige) {
@@ -355,6 +348,7 @@ function klatreMovement(event) {
 
     if (key === "f" || key === "F") {
         stopKlatring()
+        jump()
     }
 }
 popupTxt = document.getElementById("popupTxt")
@@ -424,7 +418,7 @@ function checkCollisions() {
         collisionStige();
     }
 
-    if(!detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) {
+    if(!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
         stopKlatring()
     }
 }
@@ -453,12 +447,12 @@ movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den
 function tegn() {
     flytteTonne()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    checkCollisions()
     createArena()
     createSquares()
     drawBarrels()
     drawPlayer()
     requestAnimationFrame(tegn)
-    checkCollisions()
 }
 
 //to do
