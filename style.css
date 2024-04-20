@@ -26,4 +26,5 @@ canvas {
     position: absolute;
     top: 0;
 
+    transition: ease-in .5s;
 }

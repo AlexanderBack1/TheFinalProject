@@ -27,6 +27,7 @@ function drawLevels(rows) {
     ctx.fillRect(0, rows.startY, 1000, rows.endY)
 }
 
+
 //fysikkens lover i følge meg
 const gravity = -0.65
 
@@ -198,7 +199,6 @@ const player = {
 
     yLimit: 590,
 
-    level1: 1,
     level2: 350,
     level3: 150,
 }
@@ -240,6 +240,8 @@ function movePlayer() {
             if (climbing == true) {
                 climbDown()
                 updateYLimit()
+                dontLeaveLadder(stige1)
+                dontLeaveLadder(stige2)
             }
         }
     });
@@ -286,6 +288,29 @@ function playerJump() {
 }
 
 
+let falling = false
+function fall() {
+    climbing = false
+    if(!falling) {
+        falling = true
+        player.yVelocity = player.yStartVelocity;
+        requestAnimationFrame(playerFall);
+    }
+}
+
+function playerFall() {
+    player.startY -= player.yVelocity / 2;
+    player.yVelocity += gravity;
+
+    if (player.startY + 50 > player.yLimit) {
+        player.startY = player.yLimit - 50;
+        falling = false;
+    } else {
+        requestAnimationFrame(playerFall);
+    }
+}
+
+
 
 function dontLeave() {
     if (player.startX > 950) {
@@ -296,8 +321,20 @@ function dontLeave() {
     }
 }
 
-//stiger
+//mål
+function skapMal() {
+    ctx.fillStyle = "rgb(100 100 100 / 100%)"
+    ctx.fillRect(0, 0, 70, 150)
+}
+/*function detectPlayerGoalCollision() {
+    return player.startX < 0 + 70 &&
+        player.startX + player.endX > 0 &&
+        player.startY < 0 + 150 &&
+        player.startY + player.endY > 0;
+}*/
 
+
+//stiger
 stige1 = {
     startX: 60,
     startY: 330,
@@ -326,7 +363,6 @@ function detectPlayerLadderCollision(ladder) {
         player.startY + player.endY > ladder.startY;
 }
 
-
 function collisionStige() {
     climbPopup()
     document.addEventListener("keydown", klatreMovement)
@@ -348,7 +384,7 @@ function klatreMovement(event) {
 
     if (key === "f" || key === "F") {
         stopKlatring()
-        jump()
+        fall()
     }
 }
 popupTxt = document.getElementById("popupTxt")
@@ -359,10 +395,10 @@ function klatring() {
 }
 
 function updateYLimit() {
-    if(player.startY + 50 < player.level3) {
+    if (player.startY + 50 < player.level3) {
         player.yLimit = 150
     }
-    else if(player.startY + 50 < player.level2) {
+    else if (player.startY + 50 < player.level2) {
         player.yLimit = 350
     }
     else {
@@ -389,8 +425,20 @@ function climbUp() {
 }
 
 
+//kollisjon mellom spiller og tønne
+function detectCollisionPlayerTonne(tonne) {
+    let dx = player.startX - tonne.x;
+    let dy = player.startY - tonne.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
 
-//funksjon som skjekker alle kollisjoner mulig
+    if (distance < player.speed + tonne.radius) {
+        return true;
+} 
+}
+
+
+
+//funksjon som skjekker alle kollisjoner
 function checkCollisions() {
     //kollisjoner mellom tønner og moveSquares
     if (detectCollision(tonne1, moveSquare1) ||
@@ -413,18 +461,26 @@ function checkCollisions() {
         invertMovement()
     }
 
-
+    //kolisjoner mellom stiger og spiller
     if (detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) {
         collisionStige();
     }
 
-    if(!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
+    if (!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
         stopKlatring()
     }
+
+    //kolisjon mellom spiller og tønner
+    if(detectCollisionPlayerTonne(tonne1)) {
+        player.yLimit = 590
+        fall()
+    }
+
+    //kolisjon mellom spiller og mål 
+    /*if(detectPlayerGoalCollision) {
+        console.log("du vant")
+    }*/
 }
-
-
-
 
 
 function createArena() {
@@ -434,12 +490,9 @@ function createArena() {
 
     skapStiger(stige2)
     skapStiger(stige1)
+
+    skapMal()
 }
-
-
-//spilleren interakterer med stiger
-
-
 
 //hoved funksjonen for hele canvaset
 tegn()
@@ -456,10 +509,10 @@ function tegn() {
 }
 
 //to do
+//klatre ut av stigen
 //highscore (online)
-//stiger
-//spiller-ball kollisjon
 //skins
 //intro
 //flere baller
 //en siste fight animasjon
+//styling
