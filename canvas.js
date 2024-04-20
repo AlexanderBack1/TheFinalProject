@@ -240,8 +240,6 @@ function movePlayer() {
             if (climbing == true) {
                 climbDown()
                 updateYLimit()
-                dontLeaveLadder(stige1)
-                dontLeaveLadder(stige2)
             }
         }
     });
@@ -291,7 +289,8 @@ function playerJump() {
 let falling = false
 function fall() {
     climbing = false
-    if(!falling) {
+    jumping = false
+    if (!falling) {
         falling = true
         player.yVelocity = player.yStartVelocity;
         requestAnimationFrame(playerFall);
@@ -322,17 +321,25 @@ function dontLeave() {
 }
 
 //mål
+mal = {
+    startX: 0,
+    startY: 0,
+
+    endX: 70,
+    endY: 150
+}
+
 function skapMal() {
     ctx.fillStyle = "rgb(100 100 100 / 100%)"
-    ctx.fillRect(0, 0, 70, 150)
+    ctx.fillRect(mal.startX, mal.startY, mal.endX, mal.endY)
 }
-/*function detectPlayerGoalCollision() {
-    return player.startX < 0 + 70 &&
-        player.startX + player.endX > 0 &&
-        player.startY < 0 + 150 &&
-        player.startY + player.endY > 0;
-}*/
 
+function playerInGoal() {
+    return player.startX > mal.startX + mal.endX &&
+    player.startX + player.endX < mal.startX &&
+    player.startY > mal.startY + mal.endY &&
+    player.startY + player.endY < mal.startY;
+}
 
 //stiger
 stige1 = {
@@ -419,6 +426,7 @@ function climbDown() {
     playerCenterY = player.startY + player.endY / 2
 }
 
+
 function climbUp() {
     player.startY -= player.speed
     playerCenterY = player.startY + player.endY / 2
@@ -433,7 +441,7 @@ function detectCollisionPlayerTonne(tonne) {
 
     if (distance < player.speed + tonne.radius) {
         return true;
-} 
+    }
 }
 
 
@@ -450,7 +458,7 @@ function checkCollisions() {
     }
     if (detectCollision(tonne1, moveSquare3)) {
         tonne1.visible = false;
-        setTimeout(resetTonne(tonne1), 1000)
+        resetTonne(tonne1)
     }
 
     if (detectCollision(tonne1, moveSquare4)) {
@@ -471,15 +479,15 @@ function checkCollisions() {
     }
 
     //kolisjon mellom spiller og tønner
-    if(detectCollisionPlayerTonne(tonne1)) {
+    if (detectCollisionPlayerTonne(tonne1)) {
         player.yLimit = 590
         fall()
     }
 
     //kolisjon mellom spiller og mål 
-    /*if(detectPlayerGoalCollision) {
+    if (playerInGoal) {
         console.log("du vant")
-    }*/
+    }
 }
 
 
