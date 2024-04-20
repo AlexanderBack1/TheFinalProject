@@ -196,7 +196,11 @@ const player = {
     yVelocity: 10,
     yStartVelocity: 10,
 
-    yLimit: 590
+    yLimit: 590,
+
+    level1: 1,
+    level2: 350,
+    level3: 150,
 }
 
 function drawPlayer() {
@@ -228,12 +232,14 @@ function movePlayer() {
             }
             else {
                 climbUp()
+                updateYLimit()
             }
         }
 
         if (key === "s" || key === "S") {
             if (climbing == true) {
                 climbDown()
+                updateYLimit()
             }
         }
     });
@@ -292,61 +298,30 @@ function dontLeave() {
 
 //stiger
 
-stige1Bunn = {
+stige1 = {
     startX: 60,
-    startY: 550,
-
-    endX: 80,
-    endY: 50,
-}
-
-stige2Bunn = {
-    startX: 760,
     startY: 300,
 
     endX: 80,
-    endY: 50,
+    endY: 300,
 }
 
 stige1Top = {
-    startX: 60,
-    startY: 300,
-
-    endX: 80,
-    endY: 50,
 }
 
-stige2Top = {
-    startX: 760,
-    startY: 100,
+stige1Bunn = {
 
-    endX: 80,
-    endY: 50,
 }
 
-cosmetiskStige1 = {
-    startX: 60,
-    startY: 300,
-
-    endX: 80,
-    endY: 250,
-}
-
-cosmetiskStige2 = {
+stige2 = {
     startX: 760,
     startY: 100,
 
     endX: 80,
     endY: 250,
 }
-
 
 function skapStiger(stige) {
-    ctx.fillStyle = "rgb(0 200 200 / 50%)"
-    ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
-}
-
-function skapCStiger(stige) {
     ctx.fillStyle = "rgb(200 0 200 / 30%)"
     ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
 }
@@ -359,14 +334,12 @@ function detectPlayerLadderCollision(ladder) {
 }
 
 
-function collisionStigeBunn() {
+function collisionStige() {
     climbPopup()
     document.addEventListener("keydown", klatreMovement)
 }
 
-function collisionStigeTop() {
 
-}
 
 let popup = document.getElementById("popup")
 function climbPopup() {
@@ -389,6 +362,18 @@ popupTxt = document.getElementById("popupTxt")
 function klatring() {
     climbing = true
     popupTxt.innerText = "Trykk på F for å stoppe å klatre"
+}
+
+function updateYLimit() {
+    if(player.startY + 50 < player.level3) {
+        player.yLimit = 150
+    }
+    else if(player.startY + 50 < player.level2) {
+        player.yLimit = 350
+    }
+    else {
+        player.yLimit = 590
+    }
 }
 
 function stopKlatring() {
@@ -435,13 +420,13 @@ function checkCollisions() {
     }
 
 
-    if (detectPlayerLadderCollision(stige1Bunn) || detectPlayerLadderCollision(stige2Bunn)) {
-        collisionStigeBunn();
+    if (detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) {
+        collisionStige();
     }
-/*
-    if(detectPlayerLadderCollision(stige1Top) || detectPlayerLadderCollision(stige2Top)) {
-        collisionStigeTop();
-    }*/
+
+    if(!detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) {
+        stopKlatring()
+    }
 }
 
 
@@ -453,13 +438,8 @@ function createArena() {
     drawLevels(row2)
     drawLevels(row3)
 
-    skapCStiger(cosmetiskStige1)
-    skapCStiger(cosmetiskStige2)
-
-    skapStiger(stige1Bunn)
-    skapStiger(stige2Bunn)
-    skapStiger(stige1Top)
-    skapStiger(stige2Top)
+    skapStiger(stige2)
+    skapStiger(stige1)
 }
 
 
