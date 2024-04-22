@@ -215,6 +215,9 @@ function drawPlayer() {
     if(climbing == true) {
         player.startY += player.YSpeed
     }
+
+    dontLeave()
+
     ctx.fillStyle = "rgb(200 200 200)"
     ctx.fillRect(player.startX, player.startY, player.endX, player.endY)
 }
@@ -350,13 +353,16 @@ function playerFall() {
 
 
 function dontLeave() {
-    if (player.startX > 950) {
-        player.startX = 950
+        if (player.startX < 0) {
+            player.startX = 0;
+            player.XSpeed = 0;
+        }
+        else if (player.startX + player.endX > 900) {
+            player.startX = 900 - player.endX;
+            player.XSpeed = 0;
+        }
     }
-    if (player.startX < 0) {
-        player.startX = 0
-    }
-}
+    
 
 //mål
 mal = {
@@ -462,13 +468,13 @@ function stopKlatring() {
 }
 
 function climbDown() {
-    player.YSpeed += player.speed
+    player.YSpeed += player.climbSpeed
     playerCenterY = player.startY + player.endY / 2
 }
 
 
 function climbUp() {
-    player.YSpeed -= player.speed
+    player.YSpeed -= player.climbSpeed
     playerCenterY = player.startY + player.endY / 2
 }
 
