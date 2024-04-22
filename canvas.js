@@ -192,7 +192,11 @@ const player = {
     endX: 50,
     endY: 50,
 
-    speed: 7,
+    speed: 4,
+    climbSpeed: 3,
+
+    XSpeed: 0,
+    YSpeed: 0,
 
     yVelocity: 10,
     yStartVelocity: 10,
@@ -204,6 +208,13 @@ const player = {
 }
 
 function drawPlayer() {
+    if(climbing == false) {
+        player.startX += player.XSpeed
+    }
+
+    if(climbing == true) {
+        player.startY += player.YSpeed
+    }
     ctx.fillStyle = "rgb(200 200 200)"
     ctx.fillRect(player.startX, player.startY, player.endX, player.endY)
 }
@@ -244,6 +255,33 @@ function movePlayer() {
         }
     });
 
+    document.addEventListener("keyup", function (event) {
+        let key = event.key;
+        if (key === "a" || key === "A") {
+            if (climbing == false) {
+                player.XSpeed = 0
+            }
+
+        }
+        if (key === "d" || key === "D") {
+            if (climbing == false) {
+                player.XSpeed = 0
+            }
+
+        }
+
+        if(key === "w" || key === "W") {
+            if(climbing == true) {
+                player.YSpeed = 0
+            }
+        }
+
+        if(key === "s" || key === "S") {
+            if(climbing == true) {
+                player.YSpeed = 0
+            }
+        }
+    });
 }
 
 let playerCenterX = player.startX + player.endX / 2
@@ -252,12 +290,12 @@ let playerCenterY = player.startY + player.endY / 2
 let climbing = false
 
 function moveLeft() {
-    player.startX -= player.speed
+    player.XSpeed = -player.speed
     playerCenterX = player.startX + player.endX / 2
 }
 
 function moveRight() {
-    player.startX += player.speed
+    player.XSpeed = player.speed
     playerCenterY = playerCenterY = player.startY + player.endY / 2
 }
 
@@ -336,9 +374,9 @@ function skapMal() {
 
 function playerInGoal() {
     return player.startX > mal.startX + mal.endX &&
-    player.startX + player.endX < mal.startX &&
-    player.startY > mal.startY + mal.endY &&
-    player.startY + player.endY < mal.startY;
+        player.startX + player.endX < mal.startX &&
+        player.startY > mal.startY + mal.endY &&
+        player.startY + player.endY < mal.startY;
 }
 
 //stiger
@@ -413,7 +451,9 @@ function updateYLimit() {
     }
 }
 
+
 function stopKlatring() {
+    player.YSpeed = 0
     climbing = false
     popup.style.opacity = "0%"
     popupTxt.innerText = "Trykk på E for å klatre"
@@ -422,13 +462,13 @@ function stopKlatring() {
 }
 
 function climbDown() {
-    player.startY += player.speed
+    player.YSpeed += player.speed
     playerCenterY = player.startY + player.endY / 2
 }
 
 
 function climbUp() {
-    player.startY -= player.speed
+    player.YSpeed -= player.speed
     playerCenterY = player.startY + player.endY / 2
 }
 
@@ -485,9 +525,9 @@ function checkCollisions() {
     }
 
     //kolisjon mellom spiller og mål 
-    if (playerInGoal) {
+   /* if (playerInGoal) {
         console.log("du vant")
-    }
+    }*/
 }
 
 
@@ -506,12 +546,12 @@ function createArena() {
 tegn()
 movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den en ny eventlistner per frame
 function tegn() {
-    flytteTonne()
+    //flytteTonne()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     checkCollisions()
     createArena()
     createSquares()
-    drawBarrels()
+    //drawBarrels()
     drawPlayer()
     requestAnimationFrame(tegn)
 }
