@@ -58,10 +58,33 @@ tonne1 = {
     yStartVelocity: 3,
 }
 
+tonne2 = {
+    x: 200,
+    y: 120,
+    radius: 30,
+    x_velocity: 5,
+    yVelocity: 3,
+
+    yMovement: false,
+    xMovement: true,
+
+    visible: true,
+
+    yLimit: 400,
+
+    size: 60,
+
+    //resetting
+    startX: 100,
+    startY: 120,
+    startYLimit: 400,
+    yStartVelocity: 3,
+}
+
 function tegnTonne(tonne) {
     if (tonne.visible == true) {
         ctx.beginPath()
-        ctx.arc(tonne1.x, tonne1.y, tonne1.radius, 0, Math.PI * 2)
+        ctx.arc(tonne.x, tonne.y, tonne.radius, 0, Math.PI * 2)
         ctx.fillStyle = "rgb(0 0 200 / 50%)"
         ctx.fill()
         ctx.closePath()
@@ -70,27 +93,29 @@ function tegnTonne(tonne) {
 
 function drawBarrels() {
     tegnTonne(tonne1)
+    tegnTonne(tonne2)
 }
+
 
 //tønne bevegelse
-function invertMovement() {
-    tonne1.x_velocity = -tonne1.x_velocity
+function invertMovement(tonne) {
+    tonne.x_velocity = -tonne.x_velocity
 }
 
-function flytteTonne() {
-    if (tonne1.xMovement == true) {
-        if (tonne1.x > canvas.width - tonne1.radius || tonne1.x < tonne1.radius) {
-            invertMovement()
+function flytteTonne(tonne) {
+    if (tonne.xMovement == true) {
+        if (tonne.x > canvas.width - tonne.radius || tonne.x < tonne.radius) {
+            invertMovement(tonne)
         }
 
-        tonne1.x += tonne1.x_velocity
+        tonne.x += tonne.x_velocity
 
-    } else if (tonne1.yMovement == true) {
-        if (tonne1.y + tonne1.size > tonne1.yLimit) {
-            tonne1.yVelocity = 0
+    } else if (tonne.yMovement == true) {
+        if (tonne.y + tonne.size > tonne.yLimit) {
+            tonne.yVelocity = 0
         }
 
-        tonne1.y += tonne1.yVelocity
+        tonne.y += tonne.yVelocity
     }
 }
 
@@ -150,14 +175,14 @@ function createSquares() {
 }
 
 
-function collisionSquare() {
-    if (tonne1.xMovement == true && tonne1.yMovement == false) {
-        tonne1.xMovement = false
-        tonne1.yMovement = true
+function collisionSquare(tonne) {
+    if (tonne.xMovement == true && tonne.yMovement == false) {
+        tonne.xMovement = false
+        tonne.yMovement = true
     }
     else {
-        tonne1.xMovement = true
-        tonne1.yMovement = false
+        tonne.xMovement = true
+        tonne.yMovement = false
     }
 }
 
@@ -208,11 +233,11 @@ const player = {
 }
 
 function drawPlayer() {
-    if(climbing == false) {
+    if (climbing == false) {
         player.startX += player.XSpeed
     }
 
-    if(climbing == true) {
+    if (climbing == true) {
         player.startY += player.YSpeed
     }
 
@@ -273,14 +298,14 @@ function movePlayer() {
 
         }
 
-        if(key === "w" || key === "W") {
-            if(climbing == true) {
+        if (key === "w" || key === "W") {
+            if (climbing == true) {
                 player.YSpeed = 0
             }
         }
 
-        if(key === "s" || key === "S") {
-            if(climbing == true) {
+        if (key === "s" || key === "S") {
+            if (climbing == true) {
                 player.YSpeed = 0
             }
         }
@@ -353,16 +378,16 @@ function playerFall() {
 
 
 function dontLeave() {
-        if (player.startX < 0) {
-            player.startX = 0;
-            player.XSpeed = 0;
-        }
-        else if (player.startX + player.endX > 900) {
-            player.startX = 900 - player.endX;
-            player.XSpeed = 0;
-        }
+    if (player.startX < 0) {
+        player.startX = 0;
+        player.XSpeed = 0;
     }
-    
+    else if (player.startX + player.endX > 900) {
+        player.startX = 900 - player.endX;
+        player.XSpeed = 0;
+    }
+}
+
 
 //mål
 mal = {
@@ -493,26 +518,26 @@ function detectCollisionPlayerTonne(tonne) {
 
 
 //funksjon som skjekker alle kollisjoner
-function checkCollisions() {
+function checkCollisions(tonne) {
     //kollisjoner mellom tønner og moveSquares
-    if (detectCollision(tonne1, moveSquare1) ||
-        detectCollision(tonne1, moveSquare2) ||
-        detectCollision(tonne1, moveSquare4) ||
-        detectCollision(tonne1, moveSquare5)) {
-        collisionSquare();
+    if (detectCollision(tonne, moveSquare1) ||
+        detectCollision(tonne, moveSquare2) ||
+        detectCollision(tonne, moveSquare4) ||
+        detectCollision(tonne, moveSquare5)) {
+        collisionSquare(tonne);
 
     }
-    if (detectCollision(tonne1, moveSquare3)) {
-        tonne1.visible = false;
-        resetTonne(tonne1)
+    if (detectCollision(tonne, moveSquare3)) {
+        tonne.visible = false;
+        resetTonne(tonne)
     }
 
-    if (detectCollision(tonne1, moveSquare4)) {
-        tonne1.yLimit = 625
-        tonne1.yVelocity = tonne1.yStartVelocity
+    if (detectCollision(tonne, moveSquare4)) {
+        tonne.yLimit = 625
+        tonne.yVelocity = tonne.yStartVelocity
     }
-    if (detectCollision(tonne1, moveSquare2) || detectCollision(tonne1, moveSquare5)) {
-        invertMovement()
+    if (detectCollision(tonne, moveSquare2) || detectCollision(tonne, moveSquare5)) {
+        invertMovement(tonne)
     }
 
     //kolisjoner mellom stiger og spiller
@@ -525,15 +550,15 @@ function checkCollisions() {
     }
 
     //kolisjon mellom spiller og tønner
-    if (detectCollisionPlayerTonne(tonne1)) {
+    if (detectCollisionPlayerTonne(tonne)) {
         player.yLimit = 590
         fall()
     }
 
     //kolisjon mellom spiller og mål 
-   /* if (playerInGoal) {
-        console.log("du vant")
-    }*/
+    /* if (playerInGoal) {
+         console.log("du vant")
+     }*/
 }
 
 
@@ -552,12 +577,14 @@ function createArena() {
 tegn()
 movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den en ny eventlistner per frame
 function tegn() {
-    //flytteTonne()
+    flytteTonne(tonne1)
+    flytteTonne(tonne2)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    checkCollisions()
+    checkCollisions(tonne1)
+    checkCollisions(tonne2)
     createArena()
     createSquares()
-    //drawBarrels()
+    drawBarrels()
     drawPlayer()
     requestAnimationFrame(tegn)
 }
