@@ -386,6 +386,20 @@ function dontLeave() {
         player.startX = 900 - player.endX;
         player.XSpeed = 0;
     }
+
+    if(detectPlayerLadderCollision(stige1)) {
+        if(player.startY + 50 > 600) {
+            player.startY = 550;
+            player.YSpeed = 0;
+        }
+    }
+
+    if(detectPlayerLadderCollision(stige2)) {
+        if(player.startY + 50 > 350) {
+            player.startY = 300;
+            player.YSpeed = 0;
+        }
+    }
 }
 
 
@@ -404,10 +418,11 @@ function skapMal() {
 }
 
 function playerInGoal() {
-    return player.startX < mal.startX + mal.endX &&
-        player.startX + player.endX > mal.startX &&
-        player.startY < mal.startY + mal.endY &&
-        player.startY + player.endY > mal.startY;
+    if (player.startX < mal.startX + mal.endX && player.startX + player.endX > mal.startX &&
+        player.startY < mal.startY + mal.endY && player.startY + player.endY > mal.startY) {
+        return true;
+    }
+    return false;
 }
 
 //stiger
@@ -543,6 +558,7 @@ function checkCollisions(tonne) {
     //kolisjoner mellom stiger og spiller
     if (detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) {
         collisionStige();
+        //kanskje noe her som forhindrer deg fra å forlate stigen
     }
 
     if (!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
@@ -556,9 +572,9 @@ function checkCollisions(tonne) {
     }
 
     //kolisjon mellom spiller og mål 
-    /*if (playerInGoal) {
+    if (playerInGoal) {
         console.log("du vant")
-    }*/
+    }
 }
 
 
@@ -593,7 +609,7 @@ function tegn() {
 //klatre ut av stigen
 //highscore (online)
 //skins
-//intro
+//intro - starta på
 //flere baller
 //en siste fight animasjon
 //styling
