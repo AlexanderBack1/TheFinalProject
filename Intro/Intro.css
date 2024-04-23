@@ -42,16 +42,28 @@ header {
 main {
     height: auto;
     width: 100%;
-
     padding-top: 10vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+    gap: 400px;
 }
 
 #hero {
+    background-color: white;
+    height: 60vh;
 
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
 
+section{
+    background-color: white;
+}
 
 footer {
     background-color: aquamarine;
     height: 10vh;
+
 }
