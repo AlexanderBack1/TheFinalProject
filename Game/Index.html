@@ -10,22 +10,37 @@
 
 <body>
 
-   <main>
-    <canvas></canvas>
+    <main>
+        <canvas></canvas>
 
-    <div id="scoreDiv">
-        <p>Score: <span id="scoreBoard">X</span></p>
-        <p>Personlig highscore: <span id="highScoreBoard">X</span></p>
-        <p>All time highscore: <span id="highScoreBoard2">X</span></p>
-    </div>
+        <div id="scoreDiv">
+            <p>Score: <span id="scoreBoard">X</span></p>
+            <p>Personlig highscore: <span id="highScoreBoard">X</span></p>
+            <p>All time highscore: <span id="highScoreBoard2">X</span></p>
+        </div>
 
-    <div id = "popup">
-        <h2 id="popupTxt">Trykk på E for å klatre</h2>
-    </div>
-   </main>
+        <div id="popup">
+            <h2 id="popupTxt">Trykk på E for å klatre</h2>
+        </div>
+    </main>
 
-   <script src="canvas.js"></script>
-   <script src="score.js"></script>
+    <section id="winscreen">
+        <h2>Du vant!!!</h2>
+        <p>Score: <span id="wscoreBoard">X</span></p>
+        <p>Personlig highscore: <span id="whighScoreBoard">X</span></p>
+        <p>All time highscore: <span id="whighScoreBoard2">X</span></p>
+        <button>Trykk her for å gå til leaderboard</button>
+        <button>Trykk her for å prøve igjen</button>
+
+        <div>
+            <h3>Men, Donkey Rasmus rømte</h3>
+            <button>Trykk her for å forfølge han</button>
+            <button onclick="hide()">Hide</button>
+        </div>
+    </section>
+
+    <script src="canvas.js"></script>
+    <script src="score.js"></script>
 </body>
 
 </html>

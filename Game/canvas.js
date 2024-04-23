@@ -243,8 +243,7 @@ function drawPlayer() {
 
     dontLeave()
 
-    ctx.fillStyle = "rgb(200 200 200)"
-    ctx.fillRect(player.startX, player.startY, player.endX, player.endY)
+    ctx.drawImage(image, player.startX, player.startY, player.endX, player.endY)
 }
 
 function movePlayer() {
@@ -387,15 +386,15 @@ function dontLeave() {
         player.XSpeed = 0;
     }
 
-    if(detectPlayerLadderCollision(stige1)) {
-        if(player.startY + 50 > 600) {
+    if (detectPlayerLadderCollision(stige1)) {
+        if (player.startY + 50 > 600) {
             player.startY = 550;
             player.YSpeed = 0;
         }
     }
 
-    if(detectPlayerLadderCollision(stige2)) {
-        if(player.startY + 50 > 350) {
+    if (detectPlayerLadderCollision(stige2)) {
+        if (player.startY + 50 > 350) {
             player.startY = 300;
             player.YSpeed = 0;
         }
@@ -418,11 +417,27 @@ function skapMal() {
 }
 
 function playerInGoal() {
-    if (player.startX < mal.startX + mal.endX && player.startX + player.endX > mal.startX &&
-        player.startY < mal.startY + mal.endY && player.startY + player.endY > mal.startY) {
-        return true;
-    }
-    return false;
+    /*if(player.yLimit == player.level3) {
+     if(player.startX + player.endX < mal.startX + mal.endX) {
+         console.log("ja")
+     }*/
+
+    return player.startX < mal.startX + mal.endX &&
+        player.startX + player.endX > mal.startX &&
+        player.startY < mal.startY + mal.endY &&
+        player.startY + player.endY > mal.startY && 
+        player.yLimit == player.level3;
+}
+
+const winScreen = document.getElementById("winscreen")
+function win() {
+    winScreen.style.zIndex = "10"
+    winScreen.style.opacity = "100%"
+}
+
+function hide() {
+    winScreen.style.zIndex = "-1"
+    winScreen.style.opacity = "0%"
 }
 
 //stiger
@@ -572,8 +587,8 @@ function checkCollisions(tonne) {
     }
 
     //kolisjon mellom spiller og mål 
-    if (playerInGoal) {
-        console.log("du vant")
+    if (playerInGoal()) {
+        win()
     }
 }
 
@@ -606,7 +621,6 @@ function tegn() {
 }
 
 //to do
-//klatre ut av stigen
 //highscore (online)
 //skins
 //intro - starta på

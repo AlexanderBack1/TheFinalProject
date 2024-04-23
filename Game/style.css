@@ -5,9 +5,8 @@
 }
 
 main {
-    height: 500px;
+    height: 600px;
     width: 900px;
-    background-color: cyan;
 }
 
 body {
@@ -35,4 +34,30 @@ canvas {
     top: 0;
 
     transition: ease-in .5s;
+}
+
+#winscreen {
+    font-family: "Amita", serif;
+    color: white;
+    font-size: 50px;
+    z-index: -1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    border-radius: 30px;
+    opacity: 0%;
+    transition: ease-in 2s;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#winscreen div{
+    margin: 50px;
 }
