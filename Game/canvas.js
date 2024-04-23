@@ -244,7 +244,7 @@ function collisionStige() {
 
 let popup = document.getElementById("popup")
 function climbPopup() {
-    popup.style.opacity = "70%"
+    popup.style.opacity = "80%"
 }
 
 function klatreMovement(event) {
