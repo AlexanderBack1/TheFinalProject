@@ -2,4 +2,41 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+/*Header*/
+header {
+    height: 10vh;
+    width: 100%;
+    position: fixed;
+    background-color: aquamarine;
+    color: white;
+    font-size: 20px;
+    z-index: 1111111;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#headerDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+main {
+    height: auto;
+    width: 100%;
+}
+
+footer {
+    background-color: aquamarine;
+    height: 10vh;
 }
