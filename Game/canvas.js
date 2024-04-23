@@ -359,12 +359,12 @@ function climbUp() {
 
 
 //kollisjon mellom spiller og tønne
-function detectCollisionPlayerTonne(tonne) {
-    let dx = player.startX - tonne.x;
-    let dy = player.startY - tonne.y;
+function detectCollisionPlayerbirk(birk) {
+    let dx = player.startX - birk.x;
+    let dy = player.startY - birk.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance < player.speed + tonne.radius) {
+    if (distance < player.speed + birk.radius) {
         return true;
     }
 }
@@ -372,26 +372,26 @@ function detectCollisionPlayerTonne(tonne) {
 
 
 //funksjon som skjekker alle kollisjoner
-function checkCollisions(tonne) {
+function checkCollisions(birk) {
     //kollisjoner mellom tønner og moveSquares
-    if (detectCollision(tonne, moveSquare1) ||
-        detectCollision(tonne, moveSquare2) ||
-        detectCollision(tonne, moveSquare4) ||
-        detectCollision(tonne, moveSquare5)) {
-        collisionSquare(tonne);
+    if (detectCollision(birk, moveSquare1) ||
+        detectCollision(birk, moveSquare2) ||
+        detectCollision(birk, moveSquare4) ||
+        detectCollision(birk, moveSquare5)) {
+        collisionSquare(birk);
 
     }
-    if (detectCollision(tonne, moveSquare3)) {
-        tonne.visible = false;
-        resetTonne(tonne)
+    if (detectCollision(birk, moveSquare3)) {
+        birk.visible = false;
+        resetbirk(birk)
     }
 
-    if (detectCollision(tonne, moveSquare4)) {
-        tonne.yLimit = 625
-        tonne.yVelocity = tonne.yStartVelocity
+    if (detectCollision(birk, moveSquare4)) {
+        birk.yLimit = 625
+        birk.yVelocity = birk.yStartVelocity
     }
-    if (detectCollision(tonne, moveSquare2) || detectCollision(tonne, moveSquare5)) {
-        invertMovement(tonne)
+    if (detectCollision(birk, moveSquare2) || detectCollision(birk, moveSquare5)) {
+        invertMovement(birk)
     }
 
     //kolisjoner mellom stiger og spiller
@@ -405,7 +405,7 @@ function checkCollisions(tonne) {
     }
 
     //kolisjon mellom spiller og tønner
-    if (detectCollisionPlayerTonne(tonne)) {
+    if (detectCollisionPlayerbirk(birk)) {
         player.yLimit = 590
         fall()
     }
@@ -432,8 +432,8 @@ function createArena() {
 tegn()
 movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den en ny eventlistner per frame
 function tegn() {
-    flytteTonne(birk1)
-    flytteTonne(birk2)
+    flyttebirk(birk1)
+    flyttebirk(birk2)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     checkCollisions(birk1)
     checkCollisions(birk2)
