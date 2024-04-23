@@ -19,10 +19,8 @@ body {
 
 
 canvas {
-    /*background-image: url(Bilder/arenaBackground.png);
-    background-size: cover;*/
-
-    background-color: grey;
+    background-image: url(../Bilder/arenaBackground.png);
+    background-size: cover;
 }
 
 #popup {

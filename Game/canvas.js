@@ -6,27 +6,6 @@ canvas.height = 600
 const ctx = canvas.getContext("2d")
 
 
-//banen
-let row1 = {
-    startY: 0,
-    endY: 150
-}
-
-let row2 = {
-    startY: 200,
-    endY: 150
-}
-
-let row3 = {
-    startY: 450,
-    endY: 150
-}
-
-function drawLevels(rows) {
-    ctx.fillStyle = "rgb(200 0 0 / 50%)"
-    ctx.fillRect(0, rows.startY, 1000, rows.endY)
-}
-
 
 //fysikkens lover i følge meg
 const gravity = -0.65
@@ -227,24 +206,8 @@ function dontLeave() {
 
 
 //mål
-mal = {
-    startX: 0,
-    startY: 0,
-
-    endX: 70,
-    endY: 150
-}
-
-function skapMal() {
-    ctx.fillStyle = "rgb(100 100 100 / 100%)"
-    ctx.fillRect(mal.startX, mal.startY, mal.endX, mal.endY)
-}
 
 function playerInGoal() {
-    /*if(player.yLimit == player.level3) {
-     if(player.startX + player.endX < mal.startX + mal.endX) {
-         console.log("ja")
-     }*/
 
     return player.startX < mal.startX + mal.endX &&
         player.startX + player.endX > mal.startX &&
@@ -264,27 +227,6 @@ function hide() {
     winScreen.style.opacity = "0%"
 }
 
-//stiger
-stige1 = {
-    startX: 60,
-    startY: 330,
-
-    endX: 80,
-    endY: 270,
-}
-
-stige2 = {
-    startX: 760,
-    startY: 130,
-
-    endX: 80,
-    endY: 220,
-}
-const stigeImg = document.getElementById("stige")
-
-function skapStiger(stige) {
-    ctx.drawImage(stigeImg, stige.startX, stige.startY, stige.endX, stige.endY)
-}
 
 function detectPlayerLadderCollision(ladder) {
     return player.startX < ladder.startX + ladder.endX &&
@@ -416,17 +358,6 @@ function checkCollisions(birk) {
     }
 }
 
-
-function createArena() {
-    drawLevels(row1)
-    drawLevels(row2)
-    drawLevels(row3)
-
-    skapStiger(stige2)
-    skapStiger(stige1)
-
-    skapMal()
-}
 
 //hoved funksjonen for hele canvaset
 tegn()
