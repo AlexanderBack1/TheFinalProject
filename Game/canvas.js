@@ -280,10 +280,10 @@ stige2 = {
     endX: 80,
     endY: 220,
 }
+const stigeImg = document.getElementById("stige")
 
 function skapStiger(stige) {
-    ctx.fillStyle = "rgb(200 0 200 / 30%)"
-    ctx.fillRect(stige.startX, stige.startY, stige.endX, stige.endY)
+    ctx.drawImage(stigeImg, stige.startX, stige.startY, stige.endX, stige.endY)
 }
 
 function detectPlayerLadderCollision(ladder) {
