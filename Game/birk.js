@@ -1,6 +1,4 @@
 //Birk-er
-let yMovement = true
-let xMovement = false
 
 birk1 = {
     x: 100,
@@ -48,10 +46,10 @@ birk2 = {
     yStartVelocity: 3,
 }
 
-function tegnTonne(tonne) {
-    if (tonne.visible == true) {
+function tegnbirk(birk) {
+    if (birk.visible == true) {
         ctx.beginPath()
-        ctx.arc(tonne.x, tonne.y, tonne.radius, 0, Math.PI * 2)
+        ctx.arc(birk.x, birk.y, birk.radius, 0, Math.PI * 2)
         ctx.fillStyle = "rgb(0 0 200 / 50%)"
         ctx.fill()
         ctx.closePath()
@@ -59,30 +57,30 @@ function tegnTonne(tonne) {
 }
 
 function drawBarrels() {
-    tegnTonne(birk1)
-    tegnTonne(birk2)
+    tegnbirk(birk1)
+    tegnbirk(birk2)
 }
 
 
 //tønne bevegelse
-function invertMovement(tonne) {
-    tonne.x_velocity = -tonne.x_velocity
+function invertMovement(birk) {
+    birk.x_velocity = -birk.x_velocity
 }
 
-function flytteTonne(tonne) {
-    if (tonne.xMovement == true) {
-        if (tonne.x > canvas.width - tonne.radius || tonne.x < tonne.radius) {
-            invertMovement(tonne)
+function flyttebirk(birk) {
+    if (birk.xMovement == true) {
+        if (birk.x > canvas.width - birk.radius || birk.x < birk.radius) {
+            invertMovement(birk)
         }
 
-        tonne.x += tonne.x_velocity
+        birk.x += birk.x_velocity
 
-    } else if (tonne.yMovement == true) {
-        if (tonne.y + tonne.size > tonne.yLimit) {
-            tonne.yVelocity = 0
+    } else if (birk.yMovement == true) {
+        if (birk.y + birk.size > birk.yLimit) {
+            birk.yVelocity = 0
         }
 
-        tonne.y += tonne.yVelocity
+        birk.y += birk.yVelocity
     }
 }
 
@@ -142,35 +140,35 @@ function createSquares() {
 }
 
 
-function collisionSquare(tonne) {
-    if (tonne.xMovement == true && tonne.yMovement == false) {
-        tonne.xMovement = false
-        tonne.yMovement = true
+function collisionSquare(birk) {
+    if (birk.xMovement == true && birk.yMovement == false) {
+        birk.xMovement = false
+        birk.yMovement = true
     }
     else {
-        tonne.xMovement = true
-        tonne.yMovement = false
+        birk.xMovement = true
+        birk.yMovement = false
     }
 }
 
-function detectCollision(tonne, square) {
+function detectCollision(birk, square) {
     let squareCenterX = square.startX + square.endX / 2;
     let squareCenterY = square.startY + square.endY / 2;
 
-    let distX = Math.abs(tonne.x - squareCenterX);
-    let distY = Math.abs(tonne.y - squareCenterY);
+    let distX = Math.abs(birk.x - squareCenterX);
+    let distY = Math.abs(birk.y - squareCenterY);
 
     let distance = Math.sqrt(distX * distX + distY * distY);
 
-    return distance <= (tonne.radius + Math.min(square.endX, square.endY) / 2);
+    return distance <= (birk.radius + Math.min(square.endX, square.endY) / 2);
 }
 
 
 
-function resetTonne(tonne) {
-    tonne.x = tonne.startX
-    tonne.y = tonne.startY
-    tonne.yLimit = tonne.startYLimit
-    tonne.yVelocity = tonne.yStartVelocity
-    tonne.visible = true
+function resetbirk(birk) {
+    birk.x = birk.startX
+    birk.y = birk.startY
+    birk.yLimit = birk.startYLimit
+    birk.yVelocity = birk.yStartVelocity
+    birk.visible = true
 }
