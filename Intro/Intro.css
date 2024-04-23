@@ -51,15 +51,31 @@ main {
 }
 
 #hero {
-    background-color: white;
-    height: 60vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
 
     grid-column: 1/2;
     grid-row: 1/2;
 }
 
+
+/*hero*/
+#hero img {
+    height: 300px;
+}
+
+#heroImg {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
 section{
     background-color: white;
+    height: auto;
+    padding: 20px;
 }
 
 footer {
