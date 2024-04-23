@@ -5,6 +5,12 @@
     text-decoration: none;
 }
 
+body {
+    background-image: url(../Bilder/arenaBackground.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 
 /*Header*/
 header {
@@ -31,10 +37,19 @@ header {
     flex-wrap: wrap;
 }
 
+/*main*/
+
 main {
     height: auto;
     width: 100%;
+
+    padding-top: 10vh;
 }
+
+#hero {
+
+}
+
 
 footer {
     background-color: aquamarine;
