@@ -404,10 +404,10 @@ function skapMal() {
 }
 
 function playerInGoal() {
-    return player.startX > mal.startX + mal.endX &&
-        player.startX + player.endX < mal.startX &&
-        player.startY > mal.startY + mal.endY &&
-        player.startY + player.endY < mal.startY;
+    return player.startX < mal.startX + mal.endX &&
+        player.startX + player.endX > mal.startX &&
+        player.startY < mal.startY + mal.endY &&
+        player.startY + player.endY > mal.startY;
 }
 
 //stiger
@@ -556,9 +556,9 @@ function checkCollisions(tonne) {
     }
 
     //kolisjon mellom spiller og mål 
-    /* if (playerInGoal) {
-         console.log("du vant")
-     }*/
+    /*if (playerInGoal) {
+        console.log("du vant")
+    }*/
 }
 
 
