@@ -243,7 +243,7 @@ function drawPlayer() {
 
     dontLeave()
 
-    ctx.drawImage(image, player.startX, player.startY, player.endX, player.endY)
+    ctx.drawImage(playerImage, player.startX, player.startY, player.endX, player.endY)
 }
 
 function movePlayer() {
@@ -616,6 +616,7 @@ function tegn() {
     createArena()
     createSquares()
     drawBarrels()
+    updateSkin()
     drawPlayer()
     requestAnimationFrame(tegn)
 }
