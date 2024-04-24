@@ -11,9 +11,15 @@
     box-sizing: border-box;
 }
 
+body {
+    color: white;
+}
+
+h2 {
+    font-family: "Press Start 2P", system-ui;
+}
 
 /*main*/
-
 main {
     height: auto;
     width: 100%;
@@ -25,36 +31,92 @@ main {
     gap: 400px;
 }
 
-#hero {
+/*de ulike seksjonene*/
+.infoSect {
+    padding: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr;
-
-    grid-column: 1/2;
-    grid-row: 1/2;
+	grid-template-rows: 1fr;;
 }
 
+.infoSect button {
+    border-radius: 50px;
+    background-color: white;
+    color: var(--mainGreen);
+    margin-top: 20px;
+    margin-left: 100px;
 
-/*hero*/
-#hero img {
+    height: 70px;
+    width: 300px;
+}
+
+#hero {
+    grid-column: 1/2;
+    grid-row: 1/2
+}
+
+#donkeyRasmus {
+    grid-column: 1/2;
+    grid-row: 2/3
+}
+
+.introImg img {
     height: 300px;
 }
 
-#heroImg {
+.introImg {
     display: flex;
 
     align-items: center;
     justify-content: center;
+    height: 300px;
 }
 
+/*inverser seksjonen om mitt spill*/
+#drInfo {
+    grid-column: 2/3;
+    grid-row: 1/2
+}
+
+#drDiv {
+    grid-column: 1/2;
+    grid-row: 1/2
+}
+
+
 section{
-    background-color: white;
+    background-color: var(--mainGreen);
     height: auto;
     padding: 20px;
 }
 
-footer {
-    background-color: aquamarine;
-    height: 10vh;
+/*seksjonen om karakterer*/
+#characters {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 50px 1fr 1fr;
+    gap: 50px;
 
+    grid-column: 1/2;
+    grid-row: 3/4;
+    padding-bottom: 30px;
+}
+
+#characters img {
+    height: 70px;
+}
+
+#characters h2 {
+    grid-column: 1/4;
+    grid-row: 1/2
+}
+
+#characters p {
+    font-size: 25px;
+}
+
+#rasmus {
+    grid-column: 1/2;
+    grid-row: 2/3
 }
