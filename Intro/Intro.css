@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/*font-family: "Press Start 2P", system-ui; */
+
+:root {
+    --mainGreen: rgb(21 113 69);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +24,10 @@ header {
     height: 10vh;
     width: 100%;
     position: fixed;
-    background-color: aquamarine;
+    background-color: var(--mainGreen);
     color: white;
-    font-size: 20px;
+    font-size: 14px;
+    font-family: "Press Start 2P", system-ui;
     z-index: 1111111;
 
     display: flex;
