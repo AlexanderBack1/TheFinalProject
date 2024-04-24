@@ -377,10 +377,13 @@ function tegn() {
 }
 
 //to do
-//highscore (online)
-//skins
-//fil management
-//intro - starta på
-//flere baller
-//en siste fight animasjon
-//styling
+    //på det faktiske spillet (prio)
+        //highscore
+        //flere baller
+        //Birk
+        //hvordan spiller man?
+    
+    //generelt (ikke like mye prio)
+        //fil management
+        //intro - starta på
+        //en siste fight animasjon
