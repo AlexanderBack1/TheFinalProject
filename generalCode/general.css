@@ -1,0 +1,36 @@
+/*Header*/
+header {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    background-color: var(--mainGreen);
+    color: white;
+    font-size: 14px;
+    font-family: "Press Start 2P", system-ui;
+    z-index: 1111111;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#headerDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+header a {
+    color: white;
+}
+
+/*body*/
+body {
+    background-image: url(../Bilder/arenaBackground.png);
+    background-size: cover;
+    background-attachment: fixed;
+}

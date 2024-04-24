@@ -1,17 +1,25 @@
 let playerImage = document.getElementById("anden")
 let chosenSkin = localStorage.getItem("chosenSkin") || 0
+const andImg = document.getElementById("andImg")
+const kasperImg = document.getElementById("kasperImg")
+const torbImg = document.getElementById("torbImg")
+const jonasImg = document.getElementById("jonasImg")
+const skinImg = document.querySelectorAll(".skinImg")
 
 function updateSkin() {
     if (chosenSkin == 0) {
         playerImage = document.getElementById("anden")
+        andImg.style.border = "5px solid white"
     }
 
     if (chosenSkin == 1) {
         playerImage = document.getElementById("kasper")
+        kasperImg.style.border = "10px solid white"
     }
 
     if (chosenSkin == 2) {
         playerImage = document.getElementById("torb")
+        torbImg.style.border = "10px solid white"
     }
 
     if (chosenSkin == 3) {
@@ -22,19 +30,23 @@ function updateSkin() {
 function chosenAnd() {
     chosenSkin = 0
     localStorage.setItem("chosenSkin", chosenSkin)
+    andImg.style.border = "10px solid white"
 }
 
 function chosenKasper() {
     chosenSkin = 1
     localStorage.setItem("chosenSkin", chosenSkin)
+    kasperImg.style.border = "10px solid white"
 }
 
 function chosenTorb() {
     chosenSkin = 2
     localStorage.setItem("chosenSkin", chosenSkin)
+    torbImg.style.border = "10px solid white"
 }
 
 function chosenJonas() {
     chosenSkin = 3
     localStorage.setItem("chosenSkin", chosenSkin)
+    jonasImg.style.border = "10px solid white"
 }
