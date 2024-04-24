@@ -8,7 +8,17 @@
     box-sizing: border-box;
 }
 
-main {
+:root {
+    --mainGreen: rgb(21 113 69);
+}
+
+body {
+    background-image: url(../Bilder/arenaBackground.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#mainDiv {
     height: 600px;
     width: auto;
 
@@ -17,11 +27,7 @@ main {
     justify-content: center;
 }
 
-body {
-    background-image: url(../Bilder/arenaBackground.png);
-    background-size: cover;
-    height: 100vh;
-
+main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +88,7 @@ canvas {
     grid-row: 1/2;
 }
 
-#rasmusAndTips {
+aside {
     display: grid;
     gap: 30px;
 
@@ -90,12 +96,33 @@ canvas {
     grid-template-rows: 1fr 1fr 1fr;
 }
 
+header {
+    height: 70px;
+    background-color: var(--mainGreen);
+
+    color: white;
+    font-size: 14px;
+    font-family: "Press Start 2P", system-ui;
+    z-index: 1111111;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+header a {
+    
+    color: white;
+}
+
 #popup {
     width: 200px;
     height: 90px;
     padding: 10px;
 
-    background-color: rgb(21 113 69);
+    background-color: var(--mainGreen);
     color: white;
     font-family: "Press Start 2P", system-ui;
     font-size: 11px;
