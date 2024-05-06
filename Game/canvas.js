@@ -216,6 +216,11 @@ function playerInGoal() {
         player.yLimit == player.level3;
 }
 
+function resetPlayer() {
+    player.startX = 850
+    player.startY = 540
+}
+
 const wScoreBoard = document.getElementById("wScoreBoard")
 const winScreen = document.getElementById("winscreen")
 function win() {
@@ -227,9 +232,15 @@ function win() {
     wScoreBoard.innerHTML = score
 }
 
-function hide() {
+function provIgjen() {
+    resetPlayer()
     winScreen.style.zIndex = "-1"
     winScreen.style.opacity = "0%"
+
+    scoreInterval = setInterval(lessScore, 1000)
+    score = 100000
+
+    resetAllBirks()
 }
 
 

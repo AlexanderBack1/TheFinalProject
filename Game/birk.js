@@ -163,7 +163,10 @@ function detectCollision(birk, square) {
     }
 }
 
-
+function resetAllBirks() {
+    resetbirk(birk1)
+    resetbirk(birk2)
+}
 
 function resetbirk(birk) {
     birk.startX = birk.ogStartX
@@ -173,8 +176,3 @@ function resetbirk(birk) {
     birk.visible = true
 }
 
-function ylimit() {
-    console.log(birk2.yLimit)
-}
-
-setInterval(ylimit, 1000)
