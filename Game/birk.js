@@ -176,5 +176,6 @@ function resetbirk(birk) {
     birk.xMovement = true
     birk.yMovement = false
     birk.visible = true
+    birk.x_velocity = 5
 }
 
