@@ -302,38 +302,35 @@ function climbUp() {
 
 //kollisjon mellom spiller og tønne
 function detectCollisionPlayerbirk(birk) {
-    let dx = player.startX - birk.x;
-    let dy = player.startY - birk.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < player.speed + birk.radius) {
+    if(birk.startX < player.startX + player.endX &&
+        birk.startX + birk.endX > player.startX &&
+        birk.startY < player.startY + player.endY &&
+        birk.startY + birk.endY > player.startY) {{
         return true;
     }
-}
+} }
 
 
 
 //funksjon som skjekker alle kollisjoner
 function checkCollisions(birk) {
-    //kollisjoner mellom tønner og moveSquares
-    if (detectCollision(birk, moveSquare1) ||
-        detectCollision(birk, moveSquare2) ||
-        detectCollision(birk, moveSquare4) ||
-        detectCollision(birk, moveSquare5)) {
-        collisionSquare(birk);
-
-    }
+    //kollisjoner mellom birk-er og moveSquares
     if (detectCollision(birk, moveSquare3)) {
         birk.visible = false;
         resetbirk(birk)
     }
 
+    if(detectCollision(birk, moveSquare1) || detectCollision(birk, moveSquare4)) {
+        collisionSquareX(birk)
+    }
+
     if (detectCollision(birk, moveSquare4)) {
-        birk.yLimit = 625
-        birk.yVelocity = birk.yStartVelocity
+        birk.yLimit = 700
+        birk.startYVelocity = birk.startYStartVelocity
     }
     if (detectCollision(birk, moveSquare2) || detectCollision(birk, moveSquare5)) {
         invertMovement(birk)
+        collisionSquareY(birk)
     }
 
     //kolisjoner mellom stiger og spiller
@@ -380,7 +377,6 @@ function tegn() {
     //på det faktiske spillet (prio)
         //highscore
         //flere baller
-        //Birk
         //hvordan spiller man?
     
     //generelt (ikke like mye prio)
