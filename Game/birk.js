@@ -173,6 +173,8 @@ function resetbirk(birk) {
     birk.startY = birk.ogStartY
     birk.yLimit = birk.startYLimit
     birk.startYVelocity = birk.startYStartVelocity
+    birk.xMovement = true
+    birk.yMovement = false
     birk.visible = true
 }
 

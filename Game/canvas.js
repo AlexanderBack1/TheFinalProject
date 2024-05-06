@@ -219,6 +219,7 @@ function playerInGoal() {
 function resetPlayer() {
     player.startX = 850
     player.startY = 540
+    player.yLimit = 590
 }
 
 const wScoreBoard = document.getElementById("wScoreBoard")
@@ -232,15 +233,18 @@ function win() {
     wScoreBoard.innerHTML = score
 }
 
-function provIgjen() {
+function resetGame() {
     resetPlayer()
-    winScreen.style.zIndex = "-1"
-    winScreen.style.opacity = "0%"
-
     scoreInterval = setInterval(lessScore, 1000)
     score = 100000
 
     resetAllBirks()
+}
+
+function provIgjen() {
+    resetGame()
+    winScreen.style.zIndex = "-1"
+    winScreen.style.opacity = "0%"
 }
 
 
