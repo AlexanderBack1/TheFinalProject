@@ -1,5 +1,6 @@
 let playerImage = document.getElementById("anden")
 let chosenSkin = localStorage.getItem("chosenSkin") || 0
+
 const andImg = document.getElementById("andImg")
 const kasperImg = document.getElementById("kasperImg")
 const torbImg = document.getElementById("torbImg")

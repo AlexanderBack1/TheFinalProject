@@ -360,20 +360,20 @@ function checkCollisions(birk) {
 
 
 //hoved funksjonen for hele canvaset
-tegn()
-movePlayer() // må være utenfor tegn, fordi at når den var inni så lagde den en ny eventlistner per frame
+tegn();
+movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
-    flyttebirk(birk1)
-    flyttebirk(birk2)
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    checkCollisions(birk1)
-    checkCollisions(birk2)
-    createArena()
-    createSquares()
-    drawBarrels()
-    updateSkin()
-    drawPlayer()
-    requestAnimationFrame(tegn)
+    flyttebirk(birk1);
+    flyttebirk(birk2);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    checkCollisions(birk1);
+    checkCollisions(birk2);
+    createArena();
+    createSquares();
+    drawBarrels();
+    updateSkin();
+    drawPlayer();
+    requestAnimationFrame(tegn);
 }
 
 //to do
