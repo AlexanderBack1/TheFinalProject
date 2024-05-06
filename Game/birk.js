@@ -130,7 +130,7 @@ const moveSquare5 = {
 }
 
 function drawMoveSquares(squares) {
-    ctx.fillStyle = "rgb(0 200 0 / 50%)"
+    ctx.fillStyle = "rgb(0 200 0 / 0%)"
     ctx.fillRect(squares.startX, squares.startY, squares.endX, squares.endY)
 }
 
