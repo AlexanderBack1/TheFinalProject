@@ -403,8 +403,8 @@ function tegn() {
 
 //to do
     //på det faktiske spillet (prio)
-        //highscore
-        //flere baller
+        //highscore (halvveis)
+        //flere birk-er
         //hvordan spiller man?
     
     //generelt (ikke like mye prio)
