@@ -1,15 +1,21 @@
 const scoreDiv = document.getElementById("scoreDiv")
 const scoreBoard = document.getElementById("scoreBoard")
+const highScoreBoard = document.getElementById("highScoreBoard")
+
+let highscore = parseInt(sessionStorage.getItem("highscore")) || 0
 
 let score = 100000
 
 function updateScore() {
     scoreBoard.innerText = score
 
+
     if(score <= 0) {
         score = 0
         scoreBoard.innerText = "0"
     }
+
+    highScoreBoard.innerText = highscore
 }
 
 function lessScore() {
@@ -32,4 +38,3 @@ function updateCollisionReset() {
 }
 
 let scoreInterval = setInterval(lessScore, 1000)
-

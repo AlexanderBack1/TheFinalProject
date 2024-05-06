@@ -223,6 +223,7 @@ function resetPlayer() {
 }
 
 const wScoreBoard = document.getElementById("wScoreBoard")
+const whighScoreBoard = document.getElementById("whighScoreBoard")
 const winScreen = document.getElementById("winscreen")
 function win() {
     winScreen.style.zIndex = "10"
@@ -231,6 +232,11 @@ function win() {
     clearInterval(scoreInterval)
 
     wScoreBoard.innerHTML = score
+    if (score > highscore) {
+        highscore = score
+        sessionStorage.setItem("highscore", score); 
+    }
+    whighScoreBoard.innerText = highscore
 }
 
 function resetGame() {
