@@ -3,9 +3,9 @@ const birkImage = document.getElementById("birk")
 
 birk1 = {
     startX: 200,
-    startY: 100,
+    startY: 110,
     endX: 50,
-    endY: 50,
+    endY: 40,
 
     x_velocity: 5,
     yVelocity: 3,
@@ -21,16 +21,16 @@ birk1 = {
 
     //resetting
     ogStartX: 200,
-    ogStartY: 100,
+    ogStartY: 110,
     startYLimit: 400,
     yStartVelocity: 3,
 }
 
 birk2 = {
     startX: 100,
-    startY: 100,
+    startY: 110,
     endX: 50,
-    endY: 50,
+    endY: 40,
 
     x_velocity: 5,
     yVelocity: 3,
@@ -46,7 +46,7 @@ birk2 = {
 
     //resetting
     ogStartX: 200,
-    ogStartY: 100,
+    ogStartY: 110,
     startYLimit: 400,
     yStartVelocity: 3,
 }
@@ -61,7 +61,7 @@ function tegnbirk(birk) {
 
 function drawBarrels() {
     tegnbirk(birk1)
-    tegnbirk(birk2)
+    //tegnbirk(birk2)
 }
 
 

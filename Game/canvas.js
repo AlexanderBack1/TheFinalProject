@@ -216,10 +216,15 @@ function playerInGoal() {
         player.yLimit == player.level3;
 }
 
+const wScoreBoard = document.getElementById("wScoreBoard")
 const winScreen = document.getElementById("winscreen")
 function win() {
     winScreen.style.zIndex = "10"
     winScreen.style.opacity = "100%"
+
+    clearInterval(scoreInterval)
+
+    wScoreBoard.innerHTML = score
 }
 
 function hide() {
@@ -347,6 +352,7 @@ function checkCollisions(birk) {
     if (detectCollisionPlayerbirk(birk)) {
         player.yLimit = 590
         fall()
+        scoreBirk()
     }
 
     //kolisjon mellom spiller og mål 
@@ -360,6 +366,7 @@ function checkCollisions(birk) {
 tegn();
 movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
+    updateScore()
     flyttebirk(birk1);
     flyttebirk(birk2);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
