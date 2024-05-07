@@ -51,7 +51,8 @@ const requestOptions = {
         Accept: "application/json",
     },
 }
-
+//henter
+let i = 1
 async function getRequest(gameId) {
 
     const apiCallPromise = await fetch(URL + "?id=" + gameId, requestOptions)
@@ -64,16 +65,18 @@ async function getRequest(gameId) {
     console.log(json.hs)
     console.log(json.player)
 
-    // .innerText = "Spiller: " + json.player
-    //appendPElm(htmlObj, "hs: " + json.hs)
-    //appendPElm(htmlObj, "player: " + json.player)
+    document.getElementById("spanP"+i).innerText = json.player
+    document.getElementById("spanS"+i).innerText = json.hs
+
+    i++
 }
 
+//legger til info
 async function postRequest(gameId) {
     postBody = {}
     postBody.id = gameId
-    postBody.hs = 200
-    postBody.player = "Alex"
+    postBody.hs = 300
+    postBody.player = "Jonas"
 
     const apiCallPromise = await fetch(URL, {
         method: "POST",
@@ -92,8 +95,10 @@ async function postRequest(gameId) {
     //appendPElm(htmlObj, "Response: " + responseJson)
 }
 
+for(i = 0; i<5; i++){
+    postRequest(GameID+i)
+}
 
-getRequest(GameID+2)
-//for (i = 0; i<5; i++) {
-//    postRequest(GameID+i)
-//}
+for (i = 0; i<5; i++) {
+  getRequest(GameID+i)
+}
