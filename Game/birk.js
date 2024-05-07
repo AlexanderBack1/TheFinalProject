@@ -61,9 +61,8 @@ function tegnbirk(birk) {
 
 function drawBarrels() {
     tegnbirk(birk1)
-    //tegnbirk(birk2)
+    tegnbirk(birk2)
 }
-
 
 //tønne bevegelse
 function invertMovement(birk) {
