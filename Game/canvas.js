@@ -417,6 +417,5 @@ function tegn() {
         //hvordan spiller man?
     
     //generelt (ikke like mye prio)
-        //fil management
         //intro - starta på
         //en siste fight animasjon
