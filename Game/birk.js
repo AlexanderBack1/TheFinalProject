@@ -77,31 +77,6 @@ birk3 = {
     yStartVelocity: 3,
 }
 
-birk4 = {
-    startX: 71,
-    startY: 110,
-    endX: 50,
-    endY: 40,
-
-    x_velocity: 5,
-    yVelocity: 3,
-
-    yMovement: false,
-    xMovement: true,
-
-    visible: true,
-
-    yLimit: 370,
-
-    size: 60,
-
-    //resetting
-    ogStartX: 0,
-    ogStartY: 110,
-    startYLimit: 400,
-    yStartVelocity: 3,
-}
-
 
 
 function tegnbirk(birk) {
@@ -118,13 +93,10 @@ birkTimeout()
 function birkTimeout() {
     setTimeout(function() {
         birkTwo = true
-    }, 2500);
+    }, 3000);
     setTimeout(function() {
         birkThree = true
-    }, 5000);
-    setTimeout(function() {
-        birkFour = true
-    }, 7500);
+    }, 6000);
 }
 
 function drawBarrels() {
@@ -135,10 +107,6 @@ function drawBarrels() {
 
     if(birkThree == true) {
         tegnbirk(birk3)
-    }
-
-    if(birkFour == true) {
-        tegnbirk(birk4)
     }
 }
 
@@ -171,9 +139,6 @@ function moveBirk() {
     }
     if(birkThree == true) {
         flyttebirk(birk3);
-    }
-    if(birkFour == true) {
-        flyttebirk(birk4);
     }
 }
 
@@ -257,10 +222,8 @@ function resetAllBirks() {
     resetbirk(birk1)
     resetbirk(birk2)
     resetbirk(birk3)
-    resetbirk(brik4)
     birkTwo = false
     birkThree = false
-    birkFour = false
 }
 
 function resetbirk(birk) {

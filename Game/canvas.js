@@ -393,9 +393,7 @@ function checkCollisionsBirk() {
     checkCollisions(birk1);
     checkCollisions(birk2);
     checkCollisions(birk3);
-    checkCollisions(birk4);
 }
-
 
 //hoved funksjonen for hele canvaset
 tegn();
