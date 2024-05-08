@@ -179,3 +179,14 @@ header a {
 #scoreDiv p {
     margin: 10px;
 }
+
+@keyframes skadeAnimasjon{
+    50% {
+        box-shadow: 0 0 70px red;
+    }
+
+    100+% {
+        box-shadow: none;
+    }
+
+}

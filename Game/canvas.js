@@ -229,20 +229,20 @@ function win() {
     winScreen.style.zIndex = "10"
     winScreen.style.opacity = "100%"
 
-    clearInterval(scoreInterval)
+   /* clearInterval(scoreInterval)
 
     wScoreBoard.innerHTML = score
     if (score > highscore) {
         highscore = score
         sessionStorage.setItem("highscore", score); 
     }
-    whighScoreBoard.innerText = highscore
+    whighScoreBoard.innerText = highscore*/
 }
 
 function resetGame() {
     resetPlayer()
     scoreInterval = setInterval(lessScore, 1000)
-    score = 100000
+    //score = 100000
 
     resetAllBirks()
 }
@@ -336,7 +336,13 @@ function detectCollisionPlayerbirk(birk) {
     }
 } }
 
+function birkAni() {
+    canvas.style.animation = ("skadeAnimasjon .2s infinite linear")
 
+    setTimeout(function() {
+        canvas.style.animation = "none"
+    }, 200);
+}
 
 //funksjon som skjekker alle kollisjoner
 function checkCollisions(birk) {
@@ -373,7 +379,8 @@ function checkCollisions(birk) {
     if (detectCollisionPlayerbirk(birk)) {
         player.yLimit = 590
         fall()
-        scoreBirk()
+        birkAni()
+        //scoreBirk()
     }
 
     //kolisjon mellom spiller og mål 
@@ -382,18 +389,23 @@ function checkCollisions(birk) {
     }
 }
 
+function checkCollisionsBirk() {
+    checkCollisions(birk1);
+    checkCollisions(birk2);
+    checkCollisions(birk3);
+    checkCollisions(birk4);
+}
+
 
 //hoved funksjonen for hele canvaset
 tegn();
 movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
-    updateScore()
-    flyttebirk(birk1);
-    flyttebirk(birk2);
+    //updateScore()
+    moveBirk()
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    checkCollisions(birk1);
-    checkCollisions(birk2);
     createArena();
+    checkCollisionsBirk();
     createSquares();
     drawBarrels();
     updateSkin();
@@ -404,7 +416,6 @@ function tegn() {
 //to do
     //på det faktiske spillet (prio)
         //highscore (halvveis)
-        //flere birk-er
         //hvordan spiller man?
     
     //generelt (ikke like mye prio)

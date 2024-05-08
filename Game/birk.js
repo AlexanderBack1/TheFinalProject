@@ -2,7 +2,7 @@
 const birkImage = document.getElementById("birk")
 
 birk1 = {
-    startX: 200,
+    startX: 71,
     startY: 110,
     endX: 50,
     endY: 40,
@@ -20,14 +20,14 @@ birk1 = {
     size: 60,
 
     //resetting
-    ogStartX: 200,
+    ogStartX: 71,
     ogStartY: 110,
     startYLimit: 400,
     yStartVelocity: 3,
 }
 
 birk2 = {
-    startX: 100,
+    startX: 71,
     startY: 110,
     endX: 50,
     endY: 40,
@@ -45,11 +45,64 @@ birk2 = {
     size: 60,
 
     //resetting
-    ogStartX: 200,
+    ogStartX: 71,
     ogStartY: 110,
     startYLimit: 400,
     yStartVelocity: 3,
 }
+
+
+birk3 = {
+    startX: 71,
+    startY: 110,
+    endX: 50,
+    endY: 40,
+
+    x_velocity: 5,
+    yVelocity: 3,
+
+    yMovement: false,
+    xMovement: true,
+
+    visible: true,
+
+    yLimit: 370,
+
+    size: 60,
+
+    //resetting
+    ogStartX: 71,
+    ogStartY: 110,
+    startYLimit: 400,
+    yStartVelocity: 3,
+}
+
+birk4 = {
+    startX: 71,
+    startY: 110,
+    endX: 50,
+    endY: 40,
+
+    x_velocity: 5,
+    yVelocity: 3,
+
+    yMovement: false,
+    xMovement: true,
+
+    visible: true,
+
+    yLimit: 370,
+
+    size: 60,
+
+    //resetting
+    ogStartX: 0,
+    ogStartY: 110,
+    startYLimit: 400,
+    yStartVelocity: 3,
+}
+
+
 
 function tegnbirk(birk) {
     if (birk.visible == true) {
@@ -57,11 +110,36 @@ function tegnbirk(birk) {
     }
 }
 
+let birkTwo = false
+let birkThree = false
+let birkFour = false
+birkTimeout()
 
+function birkTimeout() {
+    setTimeout(function() {
+        birkTwo = true
+    }, 2500);
+    setTimeout(function() {
+        birkThree = true
+    }, 5000);
+    setTimeout(function() {
+        birkFour = true
+    }, 7500);
+}
 
 function drawBarrels() {
     tegnbirk(birk1)
-    tegnbirk(birk2)
+    if(birkTwo == true) {
+        tegnbirk(birk2)
+    }
+
+    if(birkThree == true) {
+        tegnbirk(birk3)
+    }
+
+    if(birkFour == true) {
+        tegnbirk(birk4)
+    }
 }
 
 //tønne bevegelse
@@ -83,6 +161,19 @@ function flyttebirk(birk) {
         }
 
         birk.startY += birk.yVelocity
+    }
+}
+
+function moveBirk() {
+    flyttebirk(birk1);
+    if(birkTwo == true) {
+        flyttebirk(birk2);
+    }
+    if(birkThree == true) {
+        flyttebirk(birk3);
+    }
+    if(birkFour == true) {
+        flyttebirk(birk4);
     }
 }
 
@@ -165,6 +256,11 @@ function detectCollision(birk, square) {
 function resetAllBirks() {
     resetbirk(birk1)
     resetbirk(birk2)
+    resetbirk(birk3)
+    resetbirk(brik4)
+    birkTwo = false
+    birkThree = false
+    birkFour = false
 }
 
 function resetbirk(birk) {
