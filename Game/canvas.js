@@ -229,20 +229,20 @@ function win() {
     winScreen.style.zIndex = "10"
     winScreen.style.opacity = "100%"
 
-   /* clearInterval(scoreInterval)
+    clearInterval(scoreInterval)
 
     wScoreBoard.innerHTML = score
     if (score > highscore) {
         highscore = score
         sessionStorage.setItem("highscore", score); 
     }
-    whighScoreBoard.innerText = highscore*/
+    whighScoreBoard.innerText = highscore
 }
 
 function resetGame() {
     resetPlayer()
     scoreInterval = setInterval(lessScore, 1000)
-    //score = 100000
+    score = 100000
 
     resetAllBirks()
 }
@@ -380,7 +380,7 @@ function checkCollisions(birk) {
         player.yLimit = 590
         fall()
         birkAni()
-        //scoreBirk()
+        scoreBirk()
     }
 
     //kolisjon mellom spiller og mål 
@@ -399,7 +399,7 @@ function checkCollisionsBirk() {
 tegn();
 movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
-    //updateScore()
+    updateScore()
     moveBirk()
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     createArena();
