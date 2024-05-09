@@ -414,7 +414,6 @@ function tegn() {
 //to do
     //på det faktiske spillet (prio)
         //highscore (halvveis)
-        //hvordan spiller man?
     
     //generelt (ikke like mye prio)
         //intro - starta på

@@ -28,8 +28,8 @@ function updateSkin() {
         playerImage = document.getElementById("jonas")
         jonasImg.style.border = "10px solid white"
     }
-
 }
+
 function chosenAnd() {
     chosenSkin = 0
     localStorage.setItem("chosenSkin", chosenSkin)

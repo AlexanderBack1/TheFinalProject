@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../Bilder/arenaBackground.png);
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 100px;
+}
+
+#tree {
+    height: 600px;
+}
+
+#enemyDiv {
+    left: 30%;
+}
+
+
+#sverd {
+    transform: scaleX(-1);
+}
+
+#playerDiv {
+    right: 30%;
+}
+
+.character {
+    position: absolute;
+}
