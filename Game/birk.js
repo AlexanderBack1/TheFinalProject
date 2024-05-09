@@ -224,6 +224,8 @@ function resetAllBirks() {
     resetbirk(birk3)
     birkTwo = false
     birkThree = false
+
+    birkTimeout()
 }
 
 function resetbirk(birk) {

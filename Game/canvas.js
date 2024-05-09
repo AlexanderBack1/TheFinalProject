@@ -226,8 +226,8 @@ const wScoreBoard = document.getElementById("wScoreBoard")
 const whighScoreBoard = document.getElementById("whighScoreBoard")
 const winScreen = document.getElementById("winscreen")
 function win() {
-    winScreen.style.zIndex = "10"
-    winScreen.style.opacity = "100%"
+    //winScreen.style.zIndex = "10"
+    //winScreen.style.opacity = "100%"
 
     clearInterval(scoreInterval)
 
