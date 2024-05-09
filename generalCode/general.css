@@ -1,13 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/*font-family: "Press Start 2P", system-ui; */
+
+:root {
+    --mainGreen: rgb(21 113 69);
+    --blueVar: rgb(16 43 63);
+    --yellowVar: rgb(230 249 175);
+    --greenVar: rgb(201 237 220);
+    --expDiv: rgb(152 210 235);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 /*Header*/
 header {
     height: 80px;
     width: 100%;
-    position: fixed;
     background-color: var(--mainGreen);
     color: white;
     font-size: 14px;
     font-family: "Press Start 2P", system-ui;
-    z-index: 1111111;
+    z-index: 1111;
 
     display: flex;
     justify-content: space-evenly;
