@@ -1,5 +1,60 @@
 footer {
     margin-top: 200px;
-    height: 300px;
+    height: 400px;
     background-color: var(--mainGreen);
+
+     
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
 }
+
+  /*article 1 i footer*/
+  footer .flex {
+    margin: 50px;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  footer p, h2 {
+    color: white;
+  }
+  
+  footer ul {
+    color: white;
+    list-style: none;
+    margin-bottom: 15px;
+  }
+  
+  footer h3 {
+    color: white;
+  }
+  
+  #Kontaktoss {
+    margin-bottom: 30px;
+  }
+  
+  #article1 {
+    text-align: right;
+  }
+  
+  /*Article 2 i footer*/
+  
+  footer a {
+    color: white;
+  }
+  
+  /*Firmatitel i footer*/
+  footer .Firma {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Firma p {
+    font-size: 30px;
+  }
+  
