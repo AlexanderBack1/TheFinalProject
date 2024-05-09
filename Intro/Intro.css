@@ -12,7 +12,7 @@
 }
 
 body {
-    color: white;
+    color: black;
 }
 
 h2 {
@@ -23,7 +23,7 @@ h2 {
 main {
     height: auto;
     width: 100%;
-    padding-top: 120px;
+    padding-top: 200px;
 
     display: grid;
     grid-template-columns: 1fr;
@@ -85,7 +85,7 @@ main {
 
 
 section{
-    background-color: var(--mainGreen);
+    background-color: var(--greenVar);
     height: auto;
     padding: 20px;
 }

@@ -18,8 +18,8 @@ section {
 }
 
 .cDiv {
-    background-color: var(--mainGreen);
-    color: white;
+    background-color: var(--greenVar);
+    color: black;
     font-family: "Press Start 2P", system-ui;
     font-size: 11px;
     height: 430px;
@@ -63,7 +63,7 @@ section {
     grid-row: 1/2;
     grid-column: 1/5;
 
-    color: white;
+    color: black;
     font-family: "Press Start 2P", system-ui;
     text-align: center;
 }

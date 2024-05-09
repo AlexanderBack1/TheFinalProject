@@ -5,7 +5,7 @@
     --mainGreen: rgb(21 113 69);
     --blueVar: rgb(16 43 63);
     --yellowVar: rgb(230 249 175);
-    --greenVar: rgb(201 237 220);
+    --greenVar: rgb(201 228 202);
     --expDiv: rgb(152 210 235);
 }
 
@@ -26,6 +26,7 @@ header {
     font-size: 14px;
     font-family: "Press Start 2P", system-ui;
     z-index: 1111;
+    position: fixed;
 
     display: flex;
     justify-content: space-evenly;
