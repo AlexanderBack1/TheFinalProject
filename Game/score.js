@@ -21,7 +21,6 @@ function updateScore() {
 
     setTimeout(function() {
         highScoreBoard2.innerText = playerArr[0].hs
-        console.log("ja")
     }, 4000);
 }
 
@@ -52,10 +51,6 @@ let scoreInterval = setInterval(lessScore, 1000)
         setTimeout(function() {
             if(score > playerArr[4].hs) {
                 postRequest(score, playerName)
-            }
-
-            else {
-                console.log("nei")
             }
 
             playerArr = []

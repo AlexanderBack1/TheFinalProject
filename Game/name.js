@@ -22,6 +22,6 @@ function registrerName(){
     playerName = nameInput.value
 
     namePlayer.innerText = playerName
-    console.log(playerName)
+
     localStorage.setItem("playerName", playerName)
 }
