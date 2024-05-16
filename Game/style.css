@@ -78,8 +78,8 @@ canvas {
     background-color: black;
     height: 100vh;
     width: 100%;
-    z-index: -1;
-    opacity: 0%;
+    z-index: 1;
+    opacity: 100%;
     border-radius: 30px;
     transition: ease-in 2s;
 
