@@ -29,7 +29,8 @@ async function getRequest(gameId, i) {
 
     let player = {
         name: json.player,
-        highscore: json.hs
+        highscore: json.hs,
+        gameID: gameId
     };
 
     playerArr.push(player);
@@ -69,6 +70,7 @@ function pullNames() {
     for (let i = 0; i < 5; i++) {
         getRequest(GameID + i, i) 
     }
+
     
     setTimeout(function() {
         playerArr.sort((a, b) => b.highscore - a.highscore);

@@ -238,7 +238,8 @@ function win() {
     }
     whighScoreBoard.innerText = highscore
 
-    //all time highscore, if(din score > alltime) {endre på det, jeg har noen vage tanker} else if(skjekk de andre i synkende rekkefølge)
+    checkAllTimeHigh()
+
 }
 
 function resetGame() {
