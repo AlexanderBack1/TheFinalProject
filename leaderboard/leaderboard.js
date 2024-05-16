@@ -38,11 +38,11 @@ async function getRequest(gameId, i) {
 }
 
 //legger til info
-async function postRequest(gameId) {
+async function postRequest(dPlayer, pScore, pName) {
     postBody = {}
-    postBody.id = gameId + 4
-    postBody.hs = 1200
-    postBody.player = "Pelle"
+    postBody.id = dPlayer.gameID
+    postBody.hs = pScore
+    postBody.player = pName
 
     const apiCallPromise = await fetch(URL, {
         method: "POST",

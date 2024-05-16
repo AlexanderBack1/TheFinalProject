@@ -212,7 +212,7 @@ function playerInGoal() {
     return player.startX < mal.startX + mal.endX &&
         player.startX + player.endX > mal.startX &&
         player.startY < mal.startY + mal.endY &&
-        player.startY + player.endY > mal.startY && 
+        player.startY + player.endY > mal.startY &&
         player.yLimit == player.level3;
 }
 
@@ -225,21 +225,24 @@ function resetPlayer() {
 const wScoreBoard = document.getElementById("wScoreBoard")
 const whighScoreBoard = document.getElementById("whighScoreBoard")
 const winScreen = document.getElementById("winscreen")
+
+let hasWon = false;
 function win() {
-    winScreen.style.zIndex = "10"
-    winScreen.style.opacity = "100%"
+    if (!hasWon) {
+        winScreen.style.zIndex = "10"
+        winScreen.style.opacity = "100%"
 
-    clearInterval(scoreInterval)
+        clearInterval(scoreInterval)
 
-    wScoreBoard.innerHTML = score
-    if (score > highscore) {
-        highscore = score
-        localStorage.setItem("highscore", score); 
+        wScoreBoard.innerHTML = score
+        if (score > highscore) {
+            highscore = score
+            localStorage.setItem("highscore", score);
+        }
+        whighScoreBoard.innerText = highscore
+
+        checkHigh()
     }
-    whighScoreBoard.innerText = highscore
-
-
-
 }
 
 function resetGame() {
@@ -252,6 +255,7 @@ function resetGame() {
 
 function provIgjen() {
     setTimeout(resetGame(), 1000)
+    hasWon = false
     winScreen.style.zIndex = "-1"
     winScreen.style.opacity = "0%"
 }
@@ -331,18 +335,20 @@ function climbUp() {
 
 //kollisjon mellom spiller og tønne
 function detectCollisionPlayerbirk(birk) {
-    if(birk.startX < player.startX + player.endX &&
+    if (birk.startX < player.startX + player.endX &&
         birk.startX + birk.endX > player.startX &&
         birk.startY < player.startY + player.endY &&
-        birk.startY + birk.endY > player.startY) {{
-        return true;
+        birk.startY + birk.endY > player.startY) {
+            {
+                return true;
+            }
     }
-} }
+}
 
 function birkAni() {
     canvas.style.animation = ("skadeAnimasjon .2s infinite linear")
 
-    setTimeout(function() {
+    setTimeout(function () {
         canvas.style.animation = "none"
     }, 200);
 }
@@ -355,7 +361,7 @@ function checkCollisions(birk) {
         resetbirk(birk)
     }
 
-    if(detectCollision(birk, moveSquare1) || detectCollision(birk, moveSquare4)) {
+    if (detectCollision(birk, moveSquare1) || detectCollision(birk, moveSquare4)) {
         collisionSquareX(birk)
     }
 
@@ -416,5 +422,5 @@ function tegn() {
 }
 
 //to do
-    //på det faktiske spillet (prio)
-        //highscore (halvveis)
+//på det faktiske spillet (prio)
+//highscore (halvveis)
