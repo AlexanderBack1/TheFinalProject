@@ -1,3 +1,14 @@
+//start spillet
+let scoreInterval = 0
+function begin() {
+    tegn()
+    nameScreen.style.zIndex = "-1"
+    nameScreen.style.opacity = "0%"
+    scoreInterval = setInterval(lessScore, 1000)
+    namePlayer.innerText = playerName
+    resetAllBirks()
+}
+
 //regler for canvaset
 const canvas = document.querySelector("canvas")
 canvas.width = 900
@@ -237,7 +248,7 @@ function win() {
         wScoreBoard.innerHTML = score
         if (score > highscore) {
             highscore = score
-            sessionStorage.setItem("highscore", score);
+            localStorageStorage.setItem("highscore", score);
         }
         whighScoreBoard.innerText = highscore
 
@@ -406,11 +417,20 @@ function checkCollisionsBirk() {
     checkCollisions(birk3);
 }
 
+
+//navne greier
+if (playerName == 0) {
+    nameScreen.style.zIndex = "1"
+    nameScreen.style.opacity = "100%"
+}
+else {
+    begin()
+
+}
+
 //hoved funksjonen for hele canvaset
-tegn();
 movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
-    checkName()
     updateScore()
     moveBirk()
     ctx.clearRect(0, 0, canvas.width, canvas.height);

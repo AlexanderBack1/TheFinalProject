@@ -2,26 +2,14 @@
 const nameScreen = document.getElementById("nameScreen")
 const namePlayer = document.getElementById("namePlayer")
 
-let playerName = localStorage.getItem("playerName") || 0
-
-function checkName(){
-    if(playerName == 0){
-        nameScreen.style.zIndex = "1"
-        nameScreen.style.opacity = "100%"
-    }
-    else {
-        nameScreen.style.zIndex = "-1"
-        nameScreen.style.opacity = "0%"
-        namePlayer.innerText = playerName
-    }
-}
+let playerName = localStorageStorage.getItem("playerName") || 0
 
 const nameInput = document.getElementById("nameInput")
 
-function registrerName(){
+function registrerName() {
     playerName = nameInput.value
 
     namePlayer.innerText = playerName
 
-    localStorage.setItem("playerName", playerName)
+    localStorageStorage.setItem("playerName", playerName)
 }

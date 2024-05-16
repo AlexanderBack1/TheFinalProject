@@ -3,7 +3,7 @@ const scoreBoard = document.getElementById("scoreBoard")
 const highScoreBoard = document.getElementById("highScoreBoard")
 const highScoreBoard2 = document.getElementById("highScoreBoard2")
 
-let highscore = parseInt(sessionStorage.getItem("highscore")) || 0
+let highscore = parseInt(localStorageStorage.getItem("highscore")) || 0
 
 
 let score = 100000
@@ -43,7 +43,6 @@ function updateCollisionReset() {
     collision = false
 }
 
-let scoreInterval = setInterval(lessScore, 1000)
 
 //oppdater leaderboard
 
