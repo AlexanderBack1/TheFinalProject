@@ -2,6 +2,7 @@ const scoreDiv = document.getElementById("scoreDiv")
 const scoreBoard = document.getElementById("scoreBoard")
 const highScoreBoard = document.getElementById("highScoreBoard")
 const highScoreBoard2 = document.getElementById("highScoreBoard2")
+const whighScoreBoard2 = document.getElementById("whighScoreBoard2")
 
 let highscore = parseInt(localStorage.getItem("highscore")) || 0
 
@@ -21,6 +22,7 @@ function updateScore() {
 
     setTimeout(function() {
         highScoreBoard2.innerText = playerArr[0].hs
+        whighScoreBoard2.innerText = playerArr[0].hs
     }, 4000);
 }
 

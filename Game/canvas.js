@@ -254,6 +254,7 @@ function win() {
 
         checkHigh()
 
+        whighScoreBoard2.innerText = playerArr[0].hs
         hasWon = true
     }
 }
@@ -445,4 +446,4 @@ function tegn() {
 
 //to do
 //på det faktiske spillet (prio)
-//highscore (halvveis)
+//stiger smoothere
