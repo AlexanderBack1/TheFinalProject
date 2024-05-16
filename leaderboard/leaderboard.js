@@ -29,7 +29,7 @@ async function getRequest(gameId, i) {
 
     let player = {
         name: json.player,
-        highscore: json.hs,
+        hs: json.hs,
         gameID: gameId
     };
 
