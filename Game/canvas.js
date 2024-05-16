@@ -42,8 +42,8 @@ const player = {
 
     yLimit: 590,
 
-    level2: 350,
-    level3: 150,
+    level2: 400,
+    level3: 200,
 }
 
 function drawPlayer() {
@@ -166,6 +166,7 @@ function playerJump() {
 
 
 let falling = false
+
 function fall() {
     climbing = false
     jumping = false
