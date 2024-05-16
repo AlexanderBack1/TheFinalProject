@@ -9,8 +9,10 @@ const requestOptions = {
         Accept: "application/json",
     },
 }
+
+let playerArr = []
 //henter
-async function getRequest(gameId) {
+async function getRequest(gameId, i) {
 
     const apiCallPromise = await fetch(URL + "?id=" + gameId, requestOptions)
 
@@ -22,16 +24,24 @@ async function getRequest(gameId) {
     console.log(json.hs)
     console.log(json.player)
 
-    document.getElementById("spanP"+i).innerText = json.player
-    document.getElementById("spanS"+i).innerText = json.hs
+    
+
+
+    let player = {
+        name: json.player,
+        highscore: json.hs
+    };
+
+    playerArr.push(player);
+
 }
 
 //legger til info
 async function postRequest(gameId) {
     postBody = {}
-    postBody.id = gameId
-    postBody.hs = 300
-    postBody.player = nameInput.value
+    postBody.id = gameId + 4
+    postBody.hs = 1200
+    postBody.player = "Pelle"
 
     const apiCallPromise = await fetch(URL, {
         method: "POST",
@@ -57,7 +67,19 @@ function h(){
     console.log(nameInput.value)
 }
 
-function pushName() {
-    postRequest(GameID)
-    getRequest(GameID)
+pullNames()
+
+function pullNames() {
+    for (let i = 0; i < 5; i++) {
+        getRequest(GameID + i, i) 
+    }
+    
+    setTimeout(function() {
+        playerArr.sort((a, b) => b.highscore - a.highscore); // Sorterer basert på highscore (fallende rekkefølge)
+
+        for (j=0; j<5; j++){
+            document.getElementById("spanP"+j).innerText = playerArr[j].name
+            document.getElementById("spanS"+j).innerText = playerArr[j].highscore
+        }
+    }, 4000);
 }
