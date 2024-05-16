@@ -57,13 +57,6 @@ async function postRequest(gameId) {
     console.log(responseJson)
 }
 
-
-
-const nameInput = document.getElementById("nameInput")
-function h(){
-    console.log(nameInput.value)
-}
-
 pullNames()
 
 function pullNames() {
