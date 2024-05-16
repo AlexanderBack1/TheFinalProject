@@ -237,11 +237,13 @@ function win() {
         wScoreBoard.innerHTML = score
         if (score > highscore) {
             highscore = score
-            localStorage.setItem("highscore", score);
+            sessionStorage.setItem("highscore", score);
         }
         whighScoreBoard.innerText = highscore
 
         checkHigh()
+
+        hasWon = true
     }
 }
 

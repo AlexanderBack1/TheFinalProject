@@ -3,7 +3,7 @@ const scoreBoard = document.getElementById("scoreBoard")
 const highScoreBoard = document.getElementById("highScoreBoard")
 const highScoreBoard2 = document.getElementById("highScoreBoard2")
 
-let highscore = parseInt(localStorage.getItem("highscore")) || 0
+let highscore = parseInt(sessionStorage.getItem("highscore")) || 0
 
 
 let score = 100000
@@ -21,7 +21,8 @@ function updateScore() {
 
     setTimeout(function() {
         highScoreBoard2.innerText = playerArr[0].hs
-    }, 1000);
+        console.log("ja")
+    }, 4000);
 }
 
 function lessScore() {
@@ -49,15 +50,15 @@ let scoreInterval = setInterval(lessScore, 1000)
 
     function checkHigh() {
         setTimeout(function() {
-            if(highscore > playerArr[0].hs) {
-                postRequest(playerArr[0], highscore, playerName)
+            if(score > playerArr[4].hs) {
+                postRequest(score, playerName)
             }
-            
-            else if (pHighScore >= playerArr[1].hs) {
-                //noe
-            }
+
             else {
                 console.log("nei")
             }
+
+            playerArr = []
+            pullNames()
         }, 1000);
     }

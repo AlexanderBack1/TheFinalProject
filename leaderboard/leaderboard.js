@@ -38,9 +38,9 @@ async function getRequest(gameId, i) {
 }
 
 //legger til info
-async function postRequest(dPlayer, pScore, pName) {
+async function postRequest(pScore, pName) {
     postBody = {}
-    postBody.id = dPlayer.gameID
+    postBody.id = playerArr[4].gameID
     postBody.hs = pScore
     postBody.player = pName
 
