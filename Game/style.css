@@ -56,7 +56,7 @@ canvas {
 
     z-index: -1;
     opacity: 0%;
-    transition: ease-in 2s;
+    transition: ease-in 1s;
 
     display: flex;
     flex-direction: column;
@@ -81,7 +81,6 @@ canvas {
     z-index: 1;
     opacity: 100%;
     border-radius: 30px;
-    transition: ease-in 2s;
 
     display: flex;
     flex-direction: column;

@@ -64,8 +64,8 @@ function pullNames() {
         getRequest(GameID + i, i) 
     }
 
-    
     setTimeout(function() {
-        playerArr.sort((a, b) => b.highscore - a.highscore);
+        playerArr.sort((a, b) => b.hs - a.hs);
+        console.log(playerArr)
     }, 1000);
 }

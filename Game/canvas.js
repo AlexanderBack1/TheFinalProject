@@ -238,7 +238,7 @@ function win() {
     }
     whighScoreBoard.innerText = highscore
 
-    checkAllTimeHigh()
+
 
 }
 
@@ -251,7 +251,7 @@ function resetGame() {
 }
 
 function provIgjen() {
-    resetGame()
+    setTimeout(resetGame(), 1000)
     winScreen.style.zIndex = "-1"
     winScreen.style.opacity = "0%"
 }
@@ -402,6 +402,7 @@ function checkCollisionsBirk() {
 tegn();
 movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
+    checkName()
     updateScore()
     moveBirk()
     ctx.clearRect(0, 0, canvas.width, canvas.height);
