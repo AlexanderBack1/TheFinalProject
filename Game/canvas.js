@@ -248,7 +248,7 @@ function win() {
         wScoreBoard.innerHTML = score
         if (score > highscore) {
             highscore = score
-            localStorageStorage.setItem("highscore", score);
+            localStorage.setItem("highscore", score);
         }
         whighScoreBoard.innerText = highscore
 

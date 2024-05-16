@@ -2,7 +2,7 @@
 const nameScreen = document.getElementById("nameScreen")
 const namePlayer = document.getElementById("namePlayer")
 
-let playerName = localStorageStorage.getItem("playerName") || 0
+let playerName = localStorage.getItem("playerName") || 0
 
 const nameInput = document.getElementById("nameInput")
 
@@ -11,5 +11,5 @@ function registrerName() {
 
     namePlayer.innerText = playerName
 
-    localStorageStorage.setItem("playerName", playerName)
+    localStorage.setItem("playerName", playerName)
 }

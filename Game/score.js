@@ -3,7 +3,7 @@ const scoreBoard = document.getElementById("scoreBoard")
 const highScoreBoard = document.getElementById("highScoreBoard")
 const highScoreBoard2 = document.getElementById("highScoreBoard2")
 
-let highscore = parseInt(localStorageStorage.getItem("highscore")) || 0
+let highscore = parseInt(localStorage.getItem("highscore")) || 0
 
 
 let score = 100000
