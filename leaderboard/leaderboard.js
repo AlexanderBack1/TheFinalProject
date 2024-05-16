@@ -57,6 +57,7 @@ async function postRequest(pScore, pName) {
     console.log(responseJson)
 }
 
+
 pullNames()
 
 function pullNames() {
