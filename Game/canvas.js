@@ -234,9 +234,11 @@ function win() {
     wScoreBoard.innerHTML = score
     if (score > highscore) {
         highscore = score
-        sessionStorage.setItem("highscore", score); 
+        localStorage.setItem("highscore", score); 
     }
     whighScoreBoard.innerText = highscore
+
+    //all time highscore, if(din score > alltime) {endre på det, jeg har noen vage tanker}
 }
 
 function resetGame() {

@@ -64,6 +64,31 @@ canvas {
     align-items: center;
 }
 
+#nameScreen {
+    font-family: "Amita", serif;
+    color: rgb(214, 120, 135);
+    font-size: 50px;
+    background-image: url(../Bilder/arenaBackground.png);
+    background-size: cover;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    z-index: -1;
+    opacity: 0%;
+    border-radius: 30px;
+    transition: ease-in 2s;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #winscreen #div1 {
     display: flex;
     flex-direction: row;

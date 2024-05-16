@@ -72,10 +72,5 @@ function pullNames() {
     
     setTimeout(function() {
         playerArr.sort((a, b) => b.highscore - a.highscore);
-
-        for (j=0; j<5; j++){
-            document.getElementById("spanP"+j).innerText = playerArr[j].name
-            document.getElementById("spanS"+j).innerText = playerArr[j].highscore
-        }
     }, 1000);
 }
