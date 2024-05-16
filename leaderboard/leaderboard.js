@@ -51,13 +51,9 @@ async function postRequest(gameId) {
         body: JSON.stringify(postBody),
     })
 
-    //appendPElm(htmlObj, "StatusCodeOK: " + apiCallPromise.ok)
-
     // Getting the json from the response:
     const responseJson = await apiCallPromise.json()
     console.log(responseJson)
-
-    //appendPElm(htmlObj, "Response: " + responseJson)
 }
 
 
@@ -75,11 +71,11 @@ function pullNames() {
     }
     
     setTimeout(function() {
-        playerArr.sort((a, b) => b.highscore - a.highscore); // Sorterer basert på highscore (fallende rekkefølge)
+        playerArr.sort((a, b) => b.highscore - a.highscore);
 
         for (j=0; j<5; j++){
             document.getElementById("spanP"+j).innerText = playerArr[j].name
             document.getElementById("spanS"+j).innerText = playerArr[j].highscore
         }
-    }, 4000);
+    }, 1000);
 }
