@@ -225,7 +225,7 @@ function playerInGoal() {
         player.startX + player.endX > mal.startX &&
         player.startY < mal.startY + mal.endY &&
         player.startY + player.endY > mal.startY &&
-        player.yLimit == player.level3;
+        player.yLimit == player.level3 - 50;
 }
 
 function resetPlayer() {

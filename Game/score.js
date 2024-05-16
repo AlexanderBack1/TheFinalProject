@@ -13,16 +13,18 @@ function updateScore() {
     scoreBoard.innerText = score
 
 
-    if(score <= 0) {
+    if (score <= 0) {
         score = 0
         scoreBoard.innerText = "0"
     }
 
     highScoreBoard.innerText = highscore
 
-    setTimeout(function() {
-        highScoreBoard2.innerText = playerArr[0].hs
-        whighScoreBoard2.innerText = playerArr[0].hs
+    setTimeout(function () {
+        if (playerArr[0]) {
+            highScoreBoard2.innerText = playerArr[0].hs
+            whighScoreBoard2.innerText = playerArr[0].hs
+        }
     }, 4000);
 }
 
@@ -33,11 +35,11 @@ function lessScore() {
 let collision = false
 
 function scoreBirk() {
-    if(collision == false) {
+    if (collision == false) {
         score -= 10000
         collision = true
 
-       setTimeout(updateCollisionReset, 400)
+        setTimeout(updateCollisionReset, 400)
     }
 }
 
@@ -48,13 +50,13 @@ function updateCollisionReset() {
 
 //oppdater leaderboard
 
-    function checkHigh() {
-        setTimeout(function() {
-            if(score > playerArr[4].hs) {
-                postRequest(score, playerName)
-            }
+function checkHigh() {
+    setTimeout(function () {
+        if (score > playerArr[4].hs) {
+            postRequest(score, playerName)
+        }
 
-            playerArr = []
-            pullNames()
-        }, 1000);
-    }
+        playerArr = []
+        pullNames()
+    }, 1000);
+}
