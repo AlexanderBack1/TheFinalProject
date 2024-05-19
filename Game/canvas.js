@@ -464,6 +464,8 @@ if (playerName == 0) {
 }
 else {
     startButton.style.display = "block"
+    nameScreen.style.zIndex = "-1"
+    nameScreen.style.opacity = "0%"
 
 }
 
