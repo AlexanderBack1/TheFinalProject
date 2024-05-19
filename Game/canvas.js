@@ -338,6 +338,7 @@ popupTxt = document.getElementById("popupTxt")
 function klatring() {
     climbing = true
     popupTxt.innerText = "Trykk på F for å stoppe å klatre"
+    justClimbed = false
 }
 
 function updateYLimit() {
@@ -352,14 +353,20 @@ function updateYLimit() {
     }
 }
 
+let justClimbed = false
+
+function hidePopup() {
+    popup.style.opacity = "0%"
+    popupTxt.innerText = "Trykk på E for å klatre"
+}
 
 function stopKlatring() {
     player.YSpeed = 0
     climbing = false
-    popup.style.opacity = "0%"
-    popupTxt.innerText = "Trykk på E for å klatre"
 
     document.removeEventListener("keydown", klatreMovement)
+    jump()
+    justClimbed = true
 }
 
 function climbDown() {
@@ -428,8 +435,12 @@ function checkCollisions(birk) {
         collisionStige();
     }
 
-    if (!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
-        stopKlatring()
+    if(!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
+       hidePopup();
+    }
+
+    if (!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2) && !justClimbed) {
+        stopKlatring();
     }
 
     //kolisjon mellom spiller og Birk når spiller ikke er på stige
@@ -446,7 +457,7 @@ function checkCollisions(birk) {
     }
 
     //kolisjon mellom spiller og mål 
-    if (playerInGoal()) {
+    if (playerInGoal() && !falling) {
         win()
     }
 }
