@@ -1,10 +1,15 @@
 //start spillet
 let scoreInterval = 0
+let gameOn = false
 const canvas = document.querySelector("canvas")
 const aside = document.querySelector("aside")
 const startButton = document.getElementById("startButton")
+
+
 function begin() {
+    gameOn = true
     tegn()
+    birkTimeout()
     nameScreen.style.zIndex = "-1"
     nameScreen.style.opacity = "0%"
     scoreInterval = setInterval(lessScore, 1000)
@@ -263,12 +268,15 @@ function win() {
         checkHigh()
         spillAvWin()
 
-        setTimeout(function () {
+        setTimeout(function() {
             startButton.style.display = "block"
             canvas.style.filter = "brightness(70%)"
             aside.style.filter = "brightness(70%)"
+            gameOn = false
+            resetPlayer()
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            preveiw()
         }, 2000);
-
 
         whighScoreBoard2.innerText = playerArr[0].hs
         hasWon = true
@@ -276,9 +284,7 @@ function win() {
 }
 
 function resetGame() {
-    resetPlayer()
     score = 100000
-
     resetAllBirks()
 }
 
@@ -454,18 +460,21 @@ function preveiw() {
 preveiw()
 
 //hoved funksjonen for hele canvaset
-movePlayer(); // This should be outside to continue the animation loop
+movePlayer();
+
 function tegn() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    updateScore()
-    moveBirk()
-    createArena();
-    checkCollisionsBirk();
-    createSquares();
-    drawBarrels();
-    updateSkin();
-    drawPlayer();
-    requestAnimationFrame(tegn);
+    if(gameOn == true) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        updateScore()
+        moveBirk()
+        createArena();
+        checkCollisionsBirk();
+        createSquares();
+        drawBarrels();
+        updateSkin();
+        drawPlayer();
+        requestAnimationFrame(tegn);
+    }
 }
 
 //to do

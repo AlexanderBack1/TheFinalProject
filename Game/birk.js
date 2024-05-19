@@ -88,7 +88,6 @@ function tegnbirk(birk) {
 let birkTwo = false
 let birkThree = false
 let birkFour = false
-birkTimeout()
 
 function birkTimeout() {
     setTimeout(function() {
@@ -224,8 +223,6 @@ function resetAllBirks() {
     resetbirk(birk3)
     birkTwo = false
     birkThree = false
-
-    birkTimeout()
 }
 
 function resetbirk(birk) {
