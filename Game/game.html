@@ -11,7 +11,9 @@
 
 <body>
     <header>
-        <a href="../Intro/index.html"><h2>Donkey Rasmus</h2></a>
+        <a href="../Intro/index.html">
+            <h2>Donkey Rasmus</h2>
+        </a>
         <a href="../Intro/index.html">Info</a>
         <a href="../Skins/skins.html">Skins</a>
         <a href="../rules/rules.html">Hvordan spiller man?</a>
@@ -54,14 +56,19 @@
     </section>
 
     <section id="nameScreen">
-        <input type="text" name="playerName" id="nameInput" placeholder="Skriv navnet ditt">
-        <button onclick="registrerName()">Trykk</button>
-       <a href="../Skins/skins.html"> <button>Velg din karakter her</button> </a>
-       <button onclick="begin()"> Start Spillet</button>
+        <h1>Skriv Navnet ditt</h1>
+        <div>
+            <input type="text" name="playerName" id="nameInput" placeholder="Skriv her">
+            <button onclick="registrerName()" class="nameBtn">Submitt</button>
+        </div>
+        <div id="buttonsDiv">
+            <a href="../Skins/skins.html"> <button id="skinBtn" class="nameBtn">Velg din karakter her</button> </a>
+            <button onclick="begin()" class="nameBtn"> Start Spillet</button>
+        </div>
 
     </section>
 
-        <button onclick="begin()" id="startButton">Start Game</button>
+    <button onclick="begin()" id="startButton">Start Game</button>
 
     <img src="../Bilder/playerIcon1.png" alt="anden" id="anden" class="none">
     <img src="../Bilder/kasper.png" alt="Kasper" id="kasper" class="none">

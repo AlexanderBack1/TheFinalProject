@@ -81,14 +81,42 @@ canvas {
     background-color: black;
     height: 100vh;
     width: 100%;
-    z-index: -1;
-    opacity: 0%;
+    z-index: 1;
+    opacity: 100%;
     border-radius: 30px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+.nameBtn {
+    margin-top: 10px;
+    height: 40px;
+    width: 80px;
+    border-radius: 50px;
+    background-color: var(--greenVar);
+}
+
+#nameInput {
+    height: 40px;
+    background-color: var(--greenVar);
+}
+
+#skinBtn {
+    height: 50px;
+    width: 150px;
+}
+
+#buttonsDiv {
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #winscreen #div1 {

@@ -475,7 +475,6 @@ function preveiw() {
 }
 
 preveiw();
-loadInterval();
 
 //hoved funksjonen for hele canvaset
 movePlayer();
