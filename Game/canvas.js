@@ -181,8 +181,6 @@ function playerJump() {
 let falling = false
 
 function fall() {
-    climbing = false
-    jumping = false
     if (!falling) {
         falling = true
         player.yVelocity = player.yStartVelocity;
@@ -219,6 +217,7 @@ function dontLeave() {
             player.startY = 540;
             player.YSpeed = 0;
             fall()
+            stopKlatring()
         }
     }
 
@@ -227,6 +226,7 @@ function dontLeave() {
             player.startY = 300;
             player.YSpeed = 0;
             fall()
+            stopKlatring()
         }
     }
 }
@@ -394,6 +394,14 @@ function birkAni() {
     }, 200);
 }
 
+function birkGotcha() {
+    player.yLimit = 590
+    scoreBirk()
+    fall()
+    birkAni()
+    spillAvDmg()
+}
+
 //funksjon som skjekker alle kollisjoner
 function checkCollisions(birk) {
     //kollisjoner mellom birk-er og moveSquares
@@ -418,20 +426,23 @@ function checkCollisions(birk) {
     //kolisjoner mellom stiger og spiller
     if (detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) {
         collisionStige();
-        //kanskje noe her som forhindrer deg fra å forlate stigen
     }
 
     if (!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) {
         stopKlatring()
     }
 
-    //kolisjon mellom spiller og tønner
-    if (detectCollisionPlayerbirk(birk)) {
-        player.yLimit = 590
-        fall()
-        birkAni()
-        scoreBirk()
-        spillAvDmg()
+    //kolisjon mellom spiller og Birk når spiller ikke er på stige
+    if ((!detectPlayerLadderCollision(stige1) && !detectPlayerLadderCollision(stige2)) && detectCollisionPlayerbirk(birk) && !collision) {
+        birkGotcha()
+        setTimeout(updateCollisionReset, 400)
+    }
+
+    //kollisjon mellom spiller og Birk på en stige
+    if ((detectPlayerLadderCollision(stige1) || detectPlayerLadderCollision(stige2)) && detectCollisionPlayerbirk(birk) && !collision) {
+        stopKlatring()
+        birkGotcha()
+        setTimeout(updateCollisionReset, 1500)
     }
 
     //kolisjon mellom spiller og mål 
@@ -472,17 +483,13 @@ function tegn() {
     if(gameOn == true) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         updateScore()
-       // moveBirk()
+        moveBirk()
         createArena();
         checkCollisionsBirk();
         createSquares();
-        //drawBarrels();
+        drawBarrels();
         updateSkin();
         drawPlayer();
         requestAnimationFrame(tegn);
     }
 }
-
-//to do
-//på det faktiske spillet (prio)
-//stiger smoothere

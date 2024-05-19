@@ -35,13 +35,10 @@ function lessScore() {
 let collision = false
 
 function scoreBirk() {
-    if (collision == false) {
-        score -= 10000
-        collision = true
-
-        setTimeout(updateCollisionReset, 400)
-    }
+    score -= 10000
+    collision = true
 }
+
 
 function updateCollisionReset() {
     collision = false
