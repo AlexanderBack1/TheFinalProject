@@ -32,7 +32,6 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 20px;
     flex-wrap: wrap;
 }
 
@@ -40,7 +39,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 35px;
+    gap: 70px;
     flex-wrap: wrap;
 }
 

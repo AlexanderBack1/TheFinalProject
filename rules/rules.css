@@ -38,10 +38,15 @@ p {
 
 section {
     margin-top: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #buttonDiv {
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -53,11 +58,6 @@ section {
     padding: 20px;
     border-radius: 40px;
 
-    position: absolute;
-    transform: translateX(-50%);
-    transform: translateY(-50%);
-    top: 74%;
-    left: 37%;
 }
 
 #none {
