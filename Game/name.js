@@ -12,4 +12,13 @@ function registrerName() {
     namePlayer.innerText = playerName
 
     localStorage.setItem("playerName", playerName)
+    console.log(playerName)
 }
+
+document.addEventListener("keydown", function (event) {
+    let key = event.key;
+
+    if(key ===  'Enter') {
+        registrerName()
+    }
+})
