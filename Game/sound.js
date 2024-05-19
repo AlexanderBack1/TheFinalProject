@@ -1,8 +1,15 @@
+let sound = false
+
 function spillAvBakgrunn() {
     let lydElement = document.getElementById('background');
-    lydElement.currentTime = 0;
-    lydElement.play();
+    if (sound == true) {
+        lydElement.currentTime = 0;
+        lydElement.play();
+    } else {
+        lydElement.pause();
+    }
 }
+
 
 function spillAvJump() {
     let lydElement = document.getElementById('jump');

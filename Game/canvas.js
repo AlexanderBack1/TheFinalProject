@@ -15,6 +15,7 @@ function begin() {
     scoreInterval = setInterval(lessScore, 1000)
     namePlayer.innerText = playerName
     resetAllBirks()
+    sound = true
     spillAvBakgrunn()
     startButton.style.display = "none"
     canvas.style.filter = "brightness(100%)"
@@ -214,9 +215,10 @@ function dontLeave() {
     }
 
     if (detectPlayerLadderCollision(stige1)) {
-        if (player.startY + 50 > 600) {
-            player.startY = 550;
+        if (player.startY + 50 > 590) {
+            player.startY = 540;
             player.YSpeed = 0;
+            fall()
         }
     }
 
@@ -224,6 +226,7 @@ function dontLeave() {
         if (player.startY + 50 > 350) {
             player.startY = 300;
             player.YSpeed = 0;
+            fall()
         }
     }
 }
@@ -290,9 +293,12 @@ function resetGame() {
 
 function provIgjen() {
     setTimeout(resetGame(), 1000)
+    sound = false
+    spillAvBakgrunn()
     hasWon = false
     winScreen.style.zIndex = "-1"
     winScreen.style.opacity = "0%"
+
 }
 
 
@@ -466,11 +472,11 @@ function tegn() {
     if(gameOn == true) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         updateScore()
-        moveBirk()
+       // moveBirk()
         createArena();
         checkCollisionsBirk();
         createSquares();
-        drawBarrels();
+        //drawBarrels();
         updateSkin();
         drawPlayer();
         requestAnimationFrame(tegn);
