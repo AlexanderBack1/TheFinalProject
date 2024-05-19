@@ -212,7 +212,7 @@ function dontLeave() {
         player.XSpeed = 0;
     }
 
-    if (detectPlayerLadderCollision(stige1)) {
+    if (detectPlayerLadderCollision(stige1) && climbing == true) {
         if (player.startY + 50 > 590) {
             player.startY = 540;
             player.YSpeed = 0;
@@ -221,7 +221,7 @@ function dontLeave() {
         }
     }
 
-    if (detectPlayerLadderCollision(stige2)) {
+    if (detectPlayerLadderCollision(stige2) && climbing == true) {
         if (player.startY + 50 > 350) {
             player.startY = 300;
             player.YSpeed = 0;
