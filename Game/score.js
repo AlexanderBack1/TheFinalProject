@@ -8,6 +8,16 @@ let highscore = parseInt(localStorage.getItem("highscore")) || 0
 
 
 let score = 100000
+let loadIntervall = setInterval(function () {
+    highScoreBoard2.innerText = loadArr[h]
+    whighScoreBoard2.innerText = loadArr[h]
+    h++
+}, 500)
+
+
+let h = 0
+
+loadArr = ["laster...", "laster..", "laster.", "laster..", "laster...", "laster."]
 
 function updateScore() {
     scoreBoard.innerText = score
@@ -24,6 +34,7 @@ function updateScore() {
         if (playerArr[0]) {
             highScoreBoard2.innerText = playerArr[0].hs
             whighScoreBoard2.innerText = playerArr[0].hs
+            clearInterval(loadIntervall)
         }
     }, 3000);
 }

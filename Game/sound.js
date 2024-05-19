@@ -8,6 +8,8 @@ function spillAvBakgrunn() {
     } else {
         lydElement.pause();
     }
+
+    setTimeout(spillAvBakgrunn, 115000)
 }
 
 
