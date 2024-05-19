@@ -3,6 +3,7 @@
 
 :root {
     --mainGreen: rgb(21 113 69);
+    --greenVar: rgb(201 228 202);
 }
 
 
@@ -36,6 +37,7 @@ main {
 
 canvas {
     margin-bottom: 30px;
+    filter: brightness(70%);
 }
 
 
@@ -79,8 +81,8 @@ canvas {
     background-color: black;
     height: 100vh;
     width: 100%;
-    z-index: 1;
-    opacity: 100%;
+    z-index: -1;
+    opacity: 0%;
     border-radius: 30px;
 
     display: flex;
@@ -145,6 +147,7 @@ aside {
     display: grid;
     gap: 30px;
     margin-right: 10px;
+    filter: brightness(70%);
 
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -214,4 +217,23 @@ header a {
         box-shadow: none;
     }
 
+}
+
+
+#startButton {
+    display: none;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(--greenVar);
+    color: black;
+    border-radius: 40px;
+    height: 80px;
+    width: 120px;
+
+    font-family: "Press Start 2P", system-ui;
+    filter: brightness(100%);
 }

@@ -25,7 +25,7 @@ function updateScore() {
             highScoreBoard2.innerText = playerArr[0].hs
             whighScoreBoard2.innerText = playerArr[0].hs
         }
-    }, 4000);
+    }, 3000);
 }
 
 function lessScore() {

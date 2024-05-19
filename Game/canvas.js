@@ -1,5 +1,8 @@
 //start spillet
 let scoreInterval = 0
+const canvas = document.querySelector("canvas")
+const aside = document.querySelector("aside")
+const startButton = document.getElementById("startButton")
 function begin() {
     tegn()
     nameScreen.style.zIndex = "-1"
@@ -7,10 +10,13 @@ function begin() {
     scoreInterval = setInterval(lessScore, 1000)
     namePlayer.innerText = playerName
     resetAllBirks()
+    spillAvBakgrunn()
+    startButton.style.display = "none"
+    canvas.style.filter = "brightness(100%)"
+    aside.style.filter = "brightness(100%)"
 }
 
 //regler for canvaset
-const canvas = document.querySelector("canvas")
 canvas.width = 900
 canvas.height = 600
 
@@ -149,6 +155,7 @@ function jump() {
         jumping = true;
         player.yVelocity = player.yStartVelocity;
         requestAnimationFrame(playerJump);
+        spillAvJump()
     }
 }
 
@@ -254,6 +261,14 @@ function win() {
         whighScoreBoard.innerText = highscore
 
         checkHigh()
+        spillAvWin()
+
+        setTimeout(function () {
+            startButton.style.display = "block"
+            canvas.style.filter = "brightness(70%)"
+            aside.style.filter = "brightness(70%)"
+        }, 2000);
+
 
         whighScoreBoard2.innerText = playerArr[0].hs
         hasWon = true
@@ -262,7 +277,6 @@ function win() {
 
 function resetGame() {
     resetPlayer()
-    scoreInterval = setInterval(lessScore, 1000)
     score = 100000
 
     resetAllBirks()
@@ -354,9 +368,9 @@ function detectCollisionPlayerbirk(birk) {
         birk.startX + birk.endX > player.startX &&
         birk.startY < player.startY + player.endY &&
         birk.startY + birk.endY > player.startY) {
-            {
-                return true;
-            }
+        {
+            return true;
+        }
     }
 }
 
@@ -405,6 +419,7 @@ function checkCollisions(birk) {
         fall()
         birkAni()
         scoreBirk()
+        spillAvDmg()
     }
 
     //kolisjon mellom spiller og mål 
@@ -419,23 +434,31 @@ function checkCollisionsBirk() {
     checkCollisions(birk3);
 }
 
-
-//navne greier
+//navne greier og start game greier
 if (playerName == 0) {
     nameScreen.style.zIndex = "1"
     nameScreen.style.opacity = "100%"
 }
 else {
-    begin()
+    startButton.style.display = "block"
 
 }
+
+function preveiw() {
+    createArena()
+    drawPlayer()
+    updateScore()
+    namePlayer.innerText = playerName
+}
+
+preveiw()
 
 //hoved funksjonen for hele canvaset
 movePlayer(); // This should be outside to continue the animation loop
 function tegn() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     updateScore()
     moveBirk()
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     createArena();
     checkCollisionsBirk();
     createSquares();
