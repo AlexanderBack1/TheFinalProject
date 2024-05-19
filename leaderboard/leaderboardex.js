@@ -11,3 +11,12 @@ setTimeout(function () {
     section.removeChild(loading)
 }, 1500);
 
+
+let k = 0
+
+let loadArr = ["laster..", "laster...", "laster.."]
+
+let loadIntervall = setInterval(function () {
+    loading.innerText = loadArr[k]
+    k++
+}, 400)

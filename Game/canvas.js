@@ -474,7 +474,8 @@ function preveiw() {
     namePlayer.innerText = playerName
 }
 
-preveiw()
+preveiw();
+loadInterval();
 
 //hoved funksjonen for hele canvaset
 movePlayer();
