@@ -37,7 +37,7 @@ const gravity = -0.65
 
 //spilleren
 const player = {
-    startX: 850,
+    startX: 830,
     startY: 540,
 
     endX: 50,
@@ -283,6 +283,7 @@ function win() {
 
         whighScoreBoard2.innerText = playerArr[0].hs
         hasWon = true
+        collision = true
     }
 }
 
@@ -294,6 +295,7 @@ function resetGame() {
 function provIgjen() {
     setTimeout(resetGame(), 1000)
     sound = false
+    collision = false
     spillAvBakgrunn()
     hasWon = false
     winScreen.style.zIndex = "-1"

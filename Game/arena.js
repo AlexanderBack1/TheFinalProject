@@ -70,10 +70,24 @@ mal = {
     endY: 150
 }
 
-const goalImg = document.getElementById("banner")
 function skapMal() {
     ctx.fillStyle = "rgb(200 0 0 / 0%)"
     ctx.fillRect(mal.startX, mal.startY, mal.endX, mal.endY)
+}
+
+
+const startImg = document.getElementById("banner")
+
+const start = {
+    startX: 820,
+    startY: 450,
+
+    endX: 70,
+    endY: 150
+}
+
+function skapMal() {
+    ctx.drawImage(startImg, start.startX, start.startY, start.endX, start.endY)
 }
 
 function createArena() {

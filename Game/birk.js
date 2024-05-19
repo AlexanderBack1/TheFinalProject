@@ -160,10 +160,10 @@ const moveSquare2 = {
 }
 
 const moveSquare3 = {
-    startX: 850,
+    startX: 820,
     startY: 450,
 
-    endX: 50,
+    endX: 70,
     endY: 150
 }
 

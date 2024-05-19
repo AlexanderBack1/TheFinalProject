@@ -14,9 +14,11 @@ function spillAvBakgrunn() {
 
 
 function spillAvJump() {
-    let lydElement = document.getElementById('jump');
-    lydElement.currentTime = 0;
-    lydElement.play();
+    if(gameOn == true) {
+        let lydElement = document.getElementById('jump');
+        lydElement.currentTime = 0;
+        lydElement.play();
+    }
 }
 
 function spillAvDmg() {
